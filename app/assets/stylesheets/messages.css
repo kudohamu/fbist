@@ -1,0 +1,18 @@
+#top__alert {
+  margin:0 auto;
+  margin-bottom:10px;
+  padding:5px;
+  padding-top:1px;
+  padding-bottom:1px;
+  background-color:rgba(230,150,150,1);
+  border-style:solid;
+  border-radius:5px;
+  border-width:1px;
+  border-color:rgba(255,0,0,1);
+}
+
+#top__alert p {
+  text-align:left;
+  color:rgb(130,0,0);
+  font-size:14px;
+}

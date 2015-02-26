@@ -1,0 +1,163 @@
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+}
+
+body {
+  font-family:"メイリオ", "Meiryo",
+  "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3",
+  "Lucida Grande", sans-serif;
+  background-image: url("/assets/DSC_0046.JPG");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
+}
+
+#top__body {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: url("/assets/DSC_0043.JPG");
+}
+
+.fog {
+  width:100%;
+  height:100%;
+}
+
+.tableStyle {
+  margin:20px auto;
+  border-width:1px;
+  border-collapse: collapse;
+}
+
+.tableStyle tr {
+  padding:0px;
+  margin:0px;
+}
+
+.tableStyle tr td {
+  font-size:20px;
+  color:white;
+  width:136px;
+  height:136px;
+  text-align:right;
+  padding-right:10px;
+  border: 2px outset rgba(255,255,255,0.5);
+  vertical-align:center;
+  background-color:rgba(100,100,100,0.5);
+}
+
+.uiSelect {
+  position: relative; display: inline-block;
+}
+
+.uiSelect select {
+  padding: 4px 15px 4px 5px;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  background: #fdfdfd;
+  background: -moz-linear-gradient(top, #fff, #e5e5e5);
+  background: -webkit-linear-gradient(top, #fff, #e5e5e5);
+  background: -o-linear-gradient(top, #fff, #e5e5e5);
+  background: linear-gradient(to bottom, #fff, #e5e5e5);
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  box-shadow: inset 0 -1px 0 #fff, 1px 1px 0 rgba(0,0,0,0.05);
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.uiSelect select:hover, .uiSelect select:focus {
+  border: 1px solid #888;
+  background: #f9f9f9;
+  background: -moz-linear-gradient(top, #fcfcfc, #e1e1e1);
+  background: -webkit-linear-gradient(top, #fcfcfc, #e1e1e1);
+  background: -o-linear-gradient(top, #fcfcfc, #e1e1e1);
+  background: linear-gradient(to bottom, #fcfcfc, #e1e1e1);
+  color: #333;
+}
+
+.uiSelect select:active {
+  border: 1px solid #777;
+  background: #f9f9f9;
+  background: -moz-linear-gradient(top, #e1e1e1, #f9f9f9);
+  background: -webkit-linear-gradient(top, #e1e1e1, #f9f9f9);
+  background: -o-linear-gradient(top, #e1e1e1, #f9f9f9);
+  background: linear-gradient(to bottom, #e1e1e1, #f9f9f9);
+  color: #333;
+}
+
+.uiSelect select option {
+  text-shadow: none;
+}
+
+.uiSelect:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: block;
+  width: 0;
+  height: 0;
+  margin: -2px 0 0 0;
+  border-top: 5px solid #555;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+.uiSelect select {
+  text-indent: .01px;
+  text-overflow: "";
+}
+
+.link__button {
+  display:block;
+  width:60px;
+  height:20px;
+  vertical-align:middle;
+  text-align:center;
+  color:white;
+  text-decoration:none;
+  background-color:rgba(091,091,151,1);
+  padding:10px;
+  border-radius:6px;
+  font-size:14px;
+}
+
+.link__button:hover {
+  background-color:rgba(081,081,141,1);
+}
+
+.loadingImageDiv {
+  margin:20px;
+}
+
+.loadingImageDiv img {
+  display:block;
+  width:32px;
+  height:32px;
+  margin:0 auto;
+}
+
+.loadingFailedDiv {
+  width:500px;
+  margin:0 auto;
+  padding:20px;
+  text-align:center;
+  color:rgb(180,0,0);
+  background-color:rgba(230,150,150,1);
+  border-style:solid;
+  border-radius:5px;
+  border-width:1px;
+  border-color:rgba(255,0,0,1);
+}

@@ -1,0 +1,53 @@
+.main {
+  width:1030px;
+  margin:0 auto;
+  background-color:rgba(255,255,255,0.7);
+  background-color:rgba(0,0,0,0.6);
+  margin-top:52px;
+  padding:10px;
+}
+
+#main__title {
+  width:100%;
+  color:white;
+  font-size:50px;
+  text-align:center;
+  padding-top:20px;
+  text-shadow: 1px  1px  4px rgba(100,255,100,0.7),
+              -1px -1px  4px rgba(100,255,100,1),
+              -1px  1px  4px rgba(100,255,100,0.7),
+               1px -1px  4px rgba(100,255,100,1);
+  font-weight:bold;
+}
+
+#summary__user table tr td:first-child {
+  padding:0px;
+  background-size:100% 100%;
+  border-radius:5px 0px 0px 5px;
+}
+
+#summary__user table tr td:first-child p {
+  position:relative;
+  top:60px;
+  left:0px;
+  text-align:center;
+  height:20px;
+  font-size:15px;
+  background-color:rgba(0,0,0,0.6);
+}
+
+#summary__user table tr td:nth-child(2)::after {
+  content:"戦"
+}
+
+#summary__user table tr td:nth-child(3)::after {
+  content:"勝"
+}
+
+#summary__user table tr td:nth-child(4)::after {
+  content:"敗"
+}
+
+#summary__user table tr td:last-child::after {
+  content:"%"
+}

@@ -1,0 +1,62 @@
+<div id="summary" ng-app="recordsSummaryApp">
+  <div>
+    <div id="summary__user" ng-controller="userSummaryController">
+      <div class="loadingImageDiv" ng-hide="userLoading"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+      <table class="tableStyle" ng-show="userLoading">
+        <tr>
+        <td background=<%= current_user.icon.url %>><p><%= current_user.name %></p></td>
+          <td>{{total.record}}</td>
+          <td>{{total.won}}</td>
+          <td>{{total.lost}}</td>
+          <td>{{total.rate}}</td>
+        </tr>
+      </table>
+    </div><!--summary__user-->
+    <div id="eachRecord" ng-controller="gundamSummaryController">
+      <div class="loadingImageDiv" ng-hide="recordsLoading"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+      <div class="loadingFailedDiv" ng-show="loadingFailed">
+        機体別データの取得に失敗しました。
+      </div>
+      <div ng-show="loadingSuccess">
+        <div id="record__addButton">
+          <a href="#" class="link__button">戦績追加</a>
+        </div>
+        <div id="eachRecord__refine">
+          <p class="select__p">
+              <select name="cost">
+                <option>全コスト</option>
+                <option>3000</option>
+                <option>2500</option>
+                <option>2000</option>
+                <option>1000</option>
+              </select>
+            </span>
+          </p>
+        </div><!--eachRecord__refine-->
+        <table class="tableStyle" id="eachRecord__table" ng-cloak>
+          <thead>
+            <tr>
+              <th><p>機体</p></th>
+              <th><p>戦闘数</p></th>
+              <th><p>勝ち数</p></th>
+              <th><p>負け数</p></th>
+              <th><p>勝率</p></th>
+            </tr>
+          </thread>
+          <tbody id="eachRecord__tbody">
+            <tr ng-repeat="record in records">
+              <!--
+              <td background="images/gundam/ms0adee.png" data-sortAs="1"><a href="#"></a></td>
+              -->
+              <td><a href="http://www4.atwiki.jp/arcgundamexvsfuvo/pages/{{record.wiki}}" target= "_blank" %><img src={{record.image_path}} alt={{record.name}}></a></td>
+              <td>{{record.total}}</td>
+              <td>{{record.won}}</td>
+              <td>{{record.lost}}</td>
+              <td ngIf="record.total">{{record.rate | number: 1}}</td>
+            </tr>
+          </tbody>
+        </table><!--eachRecord__table-->
+      </div>
+    </div><!--eachRecord-->
+  </div><!--summaryController-->
+</div><!--summary-->

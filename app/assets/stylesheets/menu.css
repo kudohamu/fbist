@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+/*-----------------メニュー-----------------*/
+.menu {
+  list-style-type: none;
+  text-align:center;
+  width:1050px;
+  margin:0 auto;
+  z-index:120;
+  position:relative;
+  left:-20px;
+}
+
+.menu li {
+  text-align:center;
+  float: left;
+  width:150px;
+  position:relative;
+  background-color:rgba(091,091,151,1);
+  background-size:10px 10px;
+  background-image:radial-gradient(rgba(081,081,141,1),rgba(081,081,141,1),rgba(081,081,141,1) 2px,transparent 2px,transparent);
+}
+
+.menu li span {
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 15px 2px;
+  border-color:#999;
+  transition:.3s;
+
+  border-left:1px solid #444;
+  box-shadow: 2px  0px  0px rgba(225,225,225,0.3) inset,
+  -2px  0px  0px rgba(225,225,225,0.3) inset,
+  0px  1px  1px rgba(0,0,0,0.1) inset,
+  0px -1px  1px rgba(0,0,0,0.3) inset,
+  0px  1px  3px #666;
+  height:21px;
+}
+
+.menu li span:last-child {
+  /*
+  background-color:rgba(091,091,151,0.7);
+  background-size:10px 10px;
+  background-image:radial-gradient(rgba(081,081,141,1),rgba(081,081,141,1),rgba(081,081,141,1) 2px,transparent 2px,transparent);
+  */
+  background-size:10px 10px;
+  background-color:rgba(091,091,151,0.9);
+  /*background-image:radial-gradient(rgba(081,081,141,1),rgba(081,081,141,1),rgba(081,081,141,1) 2px,transparent 2px,transparent);*/
+}
+
+.menu li a {
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 15px 2px;
+  border-color:#999;
+  transition:.3s;
+
+  border-left:1px solid #444;
+  box-shadow: 2px  0px  0px rgba(225,225,225,0.3) inset,
+             -2px  0px  0px rgba(225,225,225,0.3) inset,
+              0px  1px  1px rgba(0,0,0,0.1) inset,
+              0px -1px  1px rgba(0,0,0,0.3) inset,
+              0px  1px  3px #666;
+
+}
+
+.menu li a:hover {
+  transition:.3s;
+  background-color:rgba(0,0,0,0.3);
+}
+
+.menu li ul {
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 0 3px 3px;
+}
+
+.menu li ul li {
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  -moz-transition: .2s;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  -ms-transition: .2s;
+  transition: .2s;
+}
+
+.menu li ul li a {
+  padding: 13px 15px;
+}
+
+.menu li:hover ul li{
+  overflow: visible;
+  height: 46px;
+}
+
+.menu li:hover ul li:first-child{
+  border-top: 0;
+}
+
+.menu li:hover ul li:last-child{
+  border-bottom: 0;
+}
