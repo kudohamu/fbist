@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
     def get_user_icon_dir
       "#{@images_root_dir}/user_icons"
     end
+
+    def get_user_icon_tmp_dir
+      "#{@images_root_dir}/tmp/user_icons"
+    end
   end
 
   protected

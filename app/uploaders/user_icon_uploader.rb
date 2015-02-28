@@ -20,7 +20,7 @@ class UserIconUploader < CarrierWave::Uploader::Base
   def store_dir
     #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     #"#{ApplicationController.get_user_icon_dir}/#{model.account_id}"
-    "#{ApplicationController.get_gundam_icon_dir}"
+    "#{ApplicationController.get_user_icon_dir}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

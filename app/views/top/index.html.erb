@@ -38,6 +38,7 @@
     <%- if devise_mapping.registerable? %>
       <%= link_to "新規登録", new_registration_path(resource_name), class:"link__button" %><br />
     <% end -%>
+    <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
 
 </div><!--loginContainer-->
 </div><!--authorization-->
