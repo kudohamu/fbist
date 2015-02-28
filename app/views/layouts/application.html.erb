@@ -9,12 +9,18 @@
 <body>
 <%= render "shared/header" %>
 
-<div id="message">
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-</div>
 
 <div class="main">
+
+  <div id="message">
+    <%- if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end -%>
+    <%- if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end -%>
+  </div>
+
   <div id="main__title">
     <%= @page_title %>
   </div>
