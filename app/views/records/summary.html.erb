@@ -21,14 +21,9 @@
         <div id="record__addButton">
           <a href="#" class="link__button">戦績追加</a>
         </div>
-        <div id="eachRecord__refine">
-        <p class="select__p">
-            <span>
-            <select name="cost" ng-model="filter_cost" ng-options="c.cost as c.name for c in options_costs">
-            </select>
-            </span>
-          </p>
-        </div><!--eachRecord__refine-->
+        <div id="summary__select" class="uiSelect">
+          <select name="cost" ng-model="filter_cost" ng-options="c.cost as c.name for c in options_costs"></select>
+        </div><!--summary__select-->
         <table class="tableStyle" id="eachRecord__table" ng-cloak>
           <thead>
             <tr>

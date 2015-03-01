@@ -66,9 +66,21 @@
   margin-bottom:-10px;
 }
 
-#eachRecord__refine {
+#summary__select {
+}
+
+#summary__select > select {
+}
+
+#summary__select select {
   position:relative;
   left:160px;
+}
+
+#summary__select:after {
+  position:relative;
+  left:230px;
+  top:-14px;
 }
 
 #record__addButton {

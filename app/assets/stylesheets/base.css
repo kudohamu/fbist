@@ -54,11 +54,12 @@ body {
 }
 
 .uiSelect {
-  position: relative; display: inline-block;
+  position:relative;
+  display:inline-block;
 }
 
 .uiSelect select {
-  padding: 4px 15px 4px 5px;
+  padding: 4px 20px 4px 10px;
   border: 1px solid #bbb;
   border-radius: 2px;
   background: #fdfdfd;
@@ -98,26 +99,23 @@ body {
 }
 
 .uiSelect select option {
-  text-shadow: none;
+  text-shadow:none;
 }
 
 .uiSelect:after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  display: block;
-  width: 0;
-  height: 0;
-  margin: -2px 0 0 0;
-  border-top: 5px solid #555;
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
+  content:"";
+  display:block;
+  width:0;
+  height:0;
+  margin:-2px 0 0 0;
+  border-top:5px solid #555;
+  border-right:5px solid transparent;
+  border-left:5px solid transparent;
 }
 
 .uiSelect select {
-  text-indent: .01px;
-  text-overflow: "";
+  text-indent:.01px;
+  text-overflow:"";
 }
 
 .link__button {
