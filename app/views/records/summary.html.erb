@@ -22,14 +22,10 @@
           <a href="#" class="link__button">戦績追加</a>
         </div>
         <div id="eachRecord__refine">
-          <p class="select__p">
-              <select name="cost">
-                <option>全コスト</option>
-                <option>3000</option>
-                <option>2500</option>
-                <option>2000</option>
-                <option>1000</option>
-              </select>
+        <p class="select__p">
+            <span>
+            <select name="cost" ng-model="filter_cost" ng-options="c.cost as c.name for c in options_costs">
+            </select>
             </span>
           </p>
         </div><!--eachRecord__refine-->
@@ -44,7 +40,7 @@
             </tr>
           </thread>
           <tbody id="eachRecord__tbody">
-            <tr ng-repeat="record in records | orderBy:predicate:reverse">
+            <tr ng-repeat="record in records | orderBy:predicate:reverse | filter:{cost: filter_cost}">
               <!--
               <td background="images/gundam/ms0adee.png" data-sortAs="1"><a href="#"></a></td>
               -->
