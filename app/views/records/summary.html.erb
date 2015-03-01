@@ -36,15 +36,15 @@
         <table class="tableStyle" id="eachRecord__table" ng-cloak>
           <thead>
             <tr>
-              <th><p>機体</p></th>
-              <th><p>戦闘数</p></th>
-              <th><p>勝ち数</p></th>
-              <th><p>負け数</p></th>
-              <th><p>勝率</p></th>
+              <th><p><a href="" ng-click="thClick('no')">機体</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('no', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('no', 'desc')" %></p></th>
+              <th><p><a href="" ng-click="thClick('total')">戦闘数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('total', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('total', 'desc')" %></p></th>
+              <th><p><a href="" ng-click="thClick('won')">勝ち数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('won', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('won', 'desc')" %></p></th>
+              <th><p><a href="" ng-click="thClick('lost')">負け数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('lost', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('lost', 'desc')" %></p></th>
+              <th><p><a href="" ng-click="thClick('rate')">勝率</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('rate', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('rate', 'desc')" %></p></th>
             </tr>
           </thread>
           <tbody id="eachRecord__tbody">
-            <tr ng-repeat="record in records">
+            <tr ng-repeat="record in records | orderBy:predicate:reverse">
               <!--
               <td background="images/gundam/ms0adee.png" data-sortAs="1"><a href="#"></a></td>
               -->
