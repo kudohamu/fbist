@@ -75,6 +75,7 @@
 #summary__select select {
   position:relative;
   left:160px;
+  height:30px;
 }
 
 #summary__select:after {
