@@ -11,6 +11,10 @@
   margin:0;
 }
 
+#eachRecord table tr th a {
+  color:rgba(255,255,255,1);
+}
+
 #eachRecord table tr th:first-child p {
   border-radius:6px 0px 0px 0px;
 }

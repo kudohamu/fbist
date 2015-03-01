@@ -1,4 +1,5 @@
 json.array! @gundams do |gundam|
+  json.no gundam.no
   json.name gundam.name
   json.image_path gundam.icon.url
   json.wiki gundam.wiki
