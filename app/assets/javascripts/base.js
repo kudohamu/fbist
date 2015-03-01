@@ -1,5 +1,7 @@
-app = angular.module('test', [])
-
-app.controller('SamplesCtrl', function ($scope) {
- $scope.hello = 'HelloWorlds'
-})
+$(window).load(function() {
+  $("#message").animate({
+  }, 3000, $("#message").animate({
+    height:"0px",
+    opacity:"0"
+  }, 2000));
+});
