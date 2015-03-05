@@ -5,9 +5,9 @@
 
 #eachRecord__table tr th p {
   color:white;
-  background-color:rgba(230,80,80,1);
-  border-top:2px outset rgba(180,30,30,1);
-  border-left:2px outset rgba(180,30,30,1);
+  background-color:rgba(81,81,141,1);
+  border-top:2px outset rgba(50,50,110,1);
+  border-left:2px outset rgba(50,50,110,1);
   margin:0;
 }
 
@@ -20,7 +20,7 @@
 }
 
 #eachRecord__table tr th:last-child p {
-  border-right:2px outset rgba(180,30,30,1);
+  border-right:2px outset rgba(50,50,110,1);
   border-radius:0px 6px 0px 0px;
 }
 
