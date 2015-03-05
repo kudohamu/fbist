@@ -1,0 +1,23 @@
+<div id="record__addDiv" ng-cloak>
+  <table>
+    <thead>
+      <tr>
+        <th>機体</th>
+        <th>勝敗</th>
+        <th>チーム</th>
+        <th>マッチ</th>
+        <th>フレンド</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><a href="" id="record__addSelect" ng-click="selectGundamClick()"><img src="{{record__add.gundam.image_path}}" alt="{{record__add.gundam.name}}"></a></td>
+      <td><a href="" class="link__button redColor" ng-click="record__add.result.won = !record__add.result.won" ng-class="{blueColor: !record__add.result.won}">{{record__add.result.won ? "勝ち" : "負け" }}</a></td>
+      <td><a href="" class="link__button maroonColor" ng-click="record__add.team.free = !record__add.team.free" ng-class="{midnightblueColor: !record__add.team.free}">{{record__add.team.free ? "フリー" : "固定" }}</a></td>
+      <td><a href="" class="link__button darkGreenColor" ng-click="record__add.mode.ranked = !record__add.mode.ranked" ng-class="{lightCyanColor: !record__add.mode.ranked}">{{record__add.mode.ranked ? "ランクマ" : "プレマ" }}</a></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+  <button id="record__addDiv__submitButton" type="submit" ng-disabled="record__addButtonDisable" ng-click="record__addButtonClick()">{{ record__addButtonDisable ? "追加中..." : "追加" }}</button>
+</div>

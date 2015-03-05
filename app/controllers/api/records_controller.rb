@@ -6,9 +6,9 @@ class Api::RecordsController < ApplicationController
     @wons = Hash.new
     @losts = Hash.new
     @gundams = Gundam.all.order("no")
-    if Record.where(user: @current_user).exists?
-      @totals = Record.where(user: @current_user).group("records.gundam_id").count()
-      @wons = Record.where(user: @current_user).group("records.gundam_id").sum("won = true")
+    if Record.where(user: current_user).exists?
+      @totals = Record.where(user: current_user).group("records.gundam_id").count()
+      @wons = Record.where(user: current_user).group("records.gundam_id").sum("won = true")
     end
     @rates = Hash.new
     @gundams.each do |gundam|
@@ -30,9 +30,9 @@ class Api::RecordsController < ApplicationController
   def total
     @total_record = 0
     @total_won = 0
-    if Record.where(user: @current_user).exists?
-      @total_record = Record.where(user: @current_user).count()
-      @total_won = Record.where(user: @current_user).sum("won = true")
+    if Record.where(user: current_user).exists?
+      @total_record = Record.where(user: current_user).count()
+      @total_won = Record.where(user: current_user).sum("won = true")
     end
     @total_lost = @total_record - @total_won
     if @total_record == 0
@@ -46,5 +46,19 @@ class Api::RecordsController < ApplicationController
 
   def show
 
+  end
+
+  def create
+    @record = Record.new(params.require(:record).permit(:gundam_id, :won, :free, :ranked, :friend_id))
+    @record.user = current_user
+    
+    @success = false
+    if @record.save
+      @success = true
+    end
+    puts "sucess: " + @success.to_s
+    @records = Record.where(user: current_user).where(gundam_id: @record.gundam_id)
+    puts @records.inspect
+    render :formats => [:json], :handlers => [:jbuilder]
   end
 end

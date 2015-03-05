@@ -1,0 +1,111 @@
+#record__addDiv {
+  margin:0px auto;
+  margin: 10px 150px 10px 150px;
+  background-color:rgba(255,255,255,0.7);
+  border-radius:5px;
+  overflow:hidden;
+  height:0px;
+  padding:0px 20px;
+}
+
+#record__addDiv table {
+  margin:0 auto;
+}
+
+#record__addDiv table tr {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0);
+}
+
+#record__addDiv table tr th {
+  margin:0;
+}
+
+#record__addDiv table tr td {
+  width:68px;
+  height:68px;
+}
+
+#record__addDiv table tr td:first-child {
+  width:136px;
+  height:68px;
+}
+
+#record__addDiv img {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0);
+}
+
+#record__addDiv img:hover {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0.7);
+  border-radius:8px 0px 5px 0px;
+  background-color:rgba(0,0,180,0.7);
+}
+
+#record__addDiv__submitButton {
+  display:block;
+  font-size:14px;
+  font-weight:bold;
+  padding:5px 20px;
+  color:rgba(255,255,255,1);
+  background-color:rgba(230,80,80,1);
+  border-radius:6px;
+  margin:0 auto;
+  cursor:pointer;
+}
+
+#record__addDiv__submitButton:active {
+  background-color:rgba(220,70,70,1);
+}
+
+.redColor {
+  background-color:rgba(230,80,80,1);
+}
+
+.redColor:hover {
+  background-color:rgba(220,70,70,1);
+}
+
+.blueColor {
+  background-color:rgba(80,80,230,1);
+}
+
+.blueColor:hover {
+  background-color:rgba(70,70,220,1);
+}
+
+.darkGreenColor {
+  background-color:rgba(80,230,80,1);
+}
+
+.darkGreenColor:hover {
+  background-color:rgba(70,220,70,1);
+}
+
+.lightCyanColor {
+  background-color:rgba(60,210,210,1);
+}
+
+.lightCyanColor:hover {
+  background-color:rgba(50,200,200,1);
+}
+
+.maroonColor {
+  background-color:rgba(128,0,0,1);
+}
+
+.maroonColor:hover {
+  background-color:rgba(108,0,0,1);
+}
+
+.midnightblueColor {
+  background-color:rgba(25,25,112,1);
+}
+
+.midnightblueColor:hover {
+  background-color:rgba(15,15,102,1);
+}

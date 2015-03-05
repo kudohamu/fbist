@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   
+  belongs_to :friend, class_name: "User", foreign_key: "friend_id"
+
   has_many :records
 
   mount_uploader :icon, GundamIconUploader
@@ -16,6 +18,7 @@ class User < ActiveRecord::Base
   validates_presence_of :icon
 
   validates_uniqueness_of :uid, scope: [:provider]
+
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

@@ -30,9 +30,12 @@ ActiveRecord::Schema.define(version: 20150222081924) do
   end
 
   create_table "records", force: true do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "gundam_id",  null: false
+    t.integer  "user_id",                          null: false
+    t.integer  "gundam_id",                        null: false
     t.boolean  "won"
+    t.boolean  "free"
+    t.boolean  "ranked"
+    t.integer  "friend_id",  limit: 8, default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

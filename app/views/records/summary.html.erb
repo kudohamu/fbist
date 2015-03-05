@@ -1,6 +1,6 @@
-<div id="summary" ng-app="recordsSummaryApp">
+<div id="summary" ng-controller="summaryController">
   <div>
-    <div id="summary__user" ng-controller="userSummaryController">
+    <div id="summary__user">
       <div class="loadingImageDiv" ng-hide="userLoading"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
       <table class="tableStyle" ng-show="userLoading">
         <tr>
@@ -8,23 +8,24 @@
           <td>{{total.record}}</td>
           <td>{{total.won}}</td>
           <td>{{total.lost}}</td>
-          <td>{{total.rate}}</td>
+          <td>{{total.rate | number:1}}</td>
         </tr>
       </table>
     </div><!--summary__user-->
-    <div id="eachRecord" ng-controller="gundamSummaryController">
+    <div id="eachRecord">
       <div class="loadingImageDiv" ng-hide="recordsLoading"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
       <div class="loadingFailedDiv" ng-show="loadingFailed">
         機体別データの取得に失敗しました。
       </div>
       <div ng-show="loadingSuccess">
-        <div id="record__addButton">
-          <a href="#" class="link__button">戦績追加</a>
+        <div id="record__addShowButton">
+        <a href="" class="link__button" ng-click="record__addDivShow = !record__addDivShow">{{ !record__addDivShow ? "戦績追加" : "閉じる" }}</a>
         </div>
+        <%= render "shared/record_add" %>
         <div id="summary__select" class="uiSelect">
           <select name="cost" ng-model="filter_cost" ng-options="c.cost as c.name for c in options_costs"></select>
         </div><!--summary__select-->
-        <table class="tableStyle" id="eachRecord__table" ng-cloak>
+        <table class="tableStyle" id="eachRecord__table" ng-cloak ng-hide="gundamListDivShow">
           <thead>
             <tr>
               <th><p><a href="" ng-click="thClick('no')">機体</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('no', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('no', 'desc')" %></p></th>
@@ -43,11 +44,12 @@
               <td>{{record.total}}</td>
               <td>{{record.won}}</td>
               <td>{{record.lost}}</td>
-              <td ngIf="record.total">{{record.rate | number: 1}}</td>
+              <td ngIf="record.total">{{record.rate | number:1}}</td>
             </tr>
           </tbody>
         </table><!--eachRecord__table-->
       </div>
+      <%= render "shared/select_gundam" %>
     </div><!--eachRecord-->
   </div><!--summaryController-->
 </div><!--summary-->

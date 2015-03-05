@@ -5,7 +5,6 @@ class RecordsController < ApplicationController
     @page_title = "機体別戦績"
   end
 
-  
 #  class << self
 #    def authenticate(mail, password)
 #      user = nil

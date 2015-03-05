@@ -1,55 +1,57 @@
-var recordsSummaryApp = angular.module('recordsSummaryApp', ['ngResource']);
+var appName = "FVistFoundation";
+var fvistFoundationApp = angular.module(appName, ["ngResource"]);
 
-recordsSummaryApp.config(
+fvistFoundationApp.config(
   ["$httpProvider", function($httpProvider) {
-    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+    $httpProvider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content");
   }]
 );
 
-/*
-recordsSummaryApp.controller('summaryController', ['$scope', 'JsonData', function($scope, JsonData) { 
-  JsonData.getRecords().then(function(response){
-    $scope.records = response.data;
-    //$scope.show_loading = false;
-  });
-  //$scope.show_loading = true;
-}]);
-*/
-
-recordsSummaryApp.controller('userSummaryController', function($scope, $resource) {
-  var res = $resource('/api/account/records/total');
-  $scope.total = res.get(function() {
-    $scope.userLoading = true;
-  }, 
-  function() {
-    $scope.total = {"record": "-- ", "won": "-- ", "lost": "-- ", "rate": "-- "};
-    $scope.userLoading = true;
-  });
-});
-
-recordsSummaryApp.controller('gundamSummaryController', function($scope, $resource) {
-  $scope.sort = { 'no': true, 'total': false, 'won': false, 'lost': false, 'rate': false };
-  $scope.asc = true;
-
-  var res = $resource('/api/account/records/summary');
-  $scope.records = res.query(function() {
-    $scope.reverse = false;
-    $scope.predicate = "no";
-    $scope.recordsLoading = true;
-    $scope.loadingSuccess = true;
-    $scope.options_costs = [
+fvistFoundationApp.controller("summaryController", function($scope, $resource, recordFactory) {
+  //初期化
+  $scope.sort = { no: true, total: false, won: false, lost: false, rate: false };
+  var costs_array = [
       { "name": "ALLコスト", "cost": 0 },
       { "name": "3000", "cost": 3000 },
       { "name": "2500", "cost": 2500 },
       { "name": "2000", "cost": 2000 },
       { "name": "1000", "cost": 1000 }
     ];
-    $scope.filter_cost = $scope.options_costs[0].cost;
-  }, 
-  function () {
-    $scope.recordsLoading = true;
-    $scope.loadingFailed = true;
-  });
+  $scope.record__add = { gundam: { image_path: "", name: "" }, result: { won: true }, team: { free: true }, mode: { ranked: true }};
+  $scope.asc = true;
+  $scope.reverse = false;
+  $scope.predicate = "no";
+  $scope.options_costs = costs_array;
+  $scope.filter_cost = $scope.options_costs[0].cost;
+
+  function getTotal() {
+    var res = $resource("/api/account/records/total");
+    $scope.total = res.get(function() {
+      $scope.userLoading = true;
+    }, 
+    function() {
+      $scope.total = { record: "-- ", won: "-- ", lost: "-- ", rate: "-- " };
+      $scope.userLoading = true;
+    });
+  }
+  getTotal();
+
+  function getSummary() {
+    $scope.recordsLoading = false;
+    $scope.loadingSuccess = false;
+    $scope.loadingFailed  = false;
+
+    var res = $resource("/api/account/records/summary");
+    $scope.records = res.query(function() {
+      $scope.recordsLoading = true;
+      $scope.loadingSuccess = true;
+    }, 
+    function () {
+      $scope.recordsLoading = true;
+      $scope.loadingFailed = true;
+    });
+  }
+  getSummary();
 
   $scope.thClick = function(pred) {
     if ($scope.predicate == pred) {
@@ -57,14 +59,19 @@ recordsSummaryApp.controller('gundamSummaryController', function($scope, $resour
       $scope.asc = !$scope.asc;
     }else {
       $scope.predicate = pred;
-      $scope.reverse = false;
-      $scope.asc = true;
+      if (pred == "no") {
+        $scope.reverse = false;
+        $scope.asc = true;
+      }else {
+        $scope.reverse = true;
+        $scope.asc = false;
+      }
 
-      $scope.sort['no'] = false;
-      $scope.sort['total'] = false;
-      $scope.sort['won'] = false;
-      $scope.sort['lost'] = false;
-      $scope.sort['rate'] = false;
+      $scope.sort["no"] = false;
+      $scope.sort["total"] = false;
+      $scope.sort["won"] = false;
+      $scope.sort["lost"] = false;
+      $scope.sort["rate"] = false;
 
       $scope.sort[pred] = true;
     }
@@ -77,4 +84,55 @@ recordsSummaryApp.controller('gundamSummaryController', function($scope, $resour
       return ($scope.sort[pred] && !($scope.asc));
     }
   };
+
+  var gundams_res = $resource("/api/gundams");
+  $scope.gundams = gundams_res.query(function() {
+    $scope.gundamList__filterCost = $scope.options_costs[0].cost;
+    $scope.record__add.gundam.image_path = $scope.gundams[0].image_path;
+    $scope.record__add.gundam.name = $scope.gundams[0].name;
+    $scope.record__add.gundam.id = $scope.gundams[0].id;
+  }, 
+  function() {
+  
+  });
+
+  $scope.selectGundam = function(index) {
+    if ($scope.filtedGundams) {
+      $scope.record__add.gundam.image_path = $scope.filtedGundams[index].image_path;
+      $scope.record__add.gundam.name = $scope.filtedGundams[index].name;
+      $scope.record__add.gundam.id = $scope.filtedGundams[index].id;
+    }else {
+      $scope.record__add.gundam.image_path = $scope.gundams[index].image_path;
+      $scope.record__add.gundam.name = $scope.gundams[index].name;
+      $scope.record__add.gundam.id = $scope.gundams[index].id;
+    }
+  };
+
+  $scope.selectGundamClick = function() {
+    $scope.gundamListDivShow = !$scope.gundamListDivShow;
+  };
+
+  $scope.record__addButtonClick = function() {
+    $scope.record__addButtonDisable = true;
+    
+    var record = new recordFactory;
+    record.gundam_id = $scope.record__add.gundam.id;
+    record.won = $scope.record__add.result.won;
+    record.free = $scope.record__add.team.free;
+    record.ranked = $scope.record__add.mode.ranked;
+    record.$save(function() {
+      getTotal();
+      getSummary();
+      $scope.record__addButtonDisable = false;
+    });
+    
+  };
 });
+
+fvistFoundationApp.filter("gundamListFilter", ["$rootScope", "$filter", function($rootScope, $filter) {
+  return function(items, input) {
+    var result = $filter("filter")(items, input);
+    $rootScope.filtedGundams = result;
+    return result;
+  };
+}]);

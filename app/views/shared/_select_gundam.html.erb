@@ -1,0 +1,15 @@
+<div class="modalBackground" ng-click="selectGundamClick()" ng-show="gundamListDivShow">
+  <div id="gundamListDiv">
+    <div id="gundamList__selectDiv">
+      コスト：<div id="gundamList__select" class="uiSelect">
+        <select name="cost" ng-model="gundamList__filterCost" ng-options="c.cost as c.name for c in options_costs" ng-click="selectGundamClick()"></select>
+      </div><!--summary__select-->
+      <br/>検索&emsp;：<input ng-model="gundamList__searchText" ng-click="selectGundamClick()">
+    </div>
+    <ul>
+      <li ng-repeat="gundam in gundams | gundamListFilter:{cost: gundamList__filterCost, name: gundamList__searchText}">
+        <img src={{gundam.image_path}} alt={{gundam.name}} ng-click="selectGundam($index)">
+      </li>
+    </ul>
+  </div>
+</div>

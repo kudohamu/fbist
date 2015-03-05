@@ -3,6 +3,7 @@ User.create(
   name: "kudohamu",
   icon: File.open(File.join(Rails.root, "app/assets/images/test.jpg")),
   uid: SecureRandom.uuid,
+  provider: "",
   email: "kudohamu@gmail.com",
   password: "hogehoge",
   password_confirmation: "hogehoge"

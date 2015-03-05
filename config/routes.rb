@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   root to: 'top#index'
 
   resource :account do
-    resources :records do
+    resources :records, only: [:index] do
       collection do
         get 'summary'
       end
@@ -66,12 +66,16 @@ Rails.application.routes.draw do
 
   namespace :api do
     resource :account do
-      resources :records do
+      resources :records, only: [:index, :create] do
         collection do
           get 'summary'
           get 'total'
         end
       end
+
+      resources :friends, only: [:index]
     end
+
+    resources :gundams, only: [:index]
   end
 end

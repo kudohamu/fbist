@@ -1,9 +1,9 @@
-#eachRecord table tr th {
+#eachRecord__table tr th {
   margin:0;
   padding:0;
 }
 
-#eachRecord table tr th p {
+#eachRecord__table tr th p {
   color:white;
   background-color:rgba(230,80,80,1);
   border-top:2px outset rgba(180,30,30,1);
@@ -11,46 +11,46 @@
   margin:0;
 }
 
-#eachRecord table tr th a {
+#eachRecord__table tr th a {
   color:rgba(255,255,255,1);
 }
 
-#eachRecord table tr th:first-child p {
+#eachRecord__table tr th:first-child p {
   border-radius:6px 0px 0px 0px;
 }
 
-#eachRecord table tr th:last-child p {
+#eachRecord__table tr th:last-child p {
   border-right:2px outset rgba(180,30,30,1);
   border-radius:0px 6px 0px 0px;
 }
 
-#eachRecord table tr td {
+#eachRecord__table tr td {
   height:66px;
 }
 
-#eachRecord table tr td:first-child {
+#eachRecord__table tr td:first-child {
   padding:0px;
   background-size:100% 100%;
   border-radius:5px 0px 0px 5px;
 }
 
-#eachRecord table tr td:nth-child(2)::after {
+#eachRecord__table tr td:nth-child(2)::after {
   content:"戦"
 }
 
-#eachRecord table tr td:nth-child(3)::after {
+#eachRecord__table tr td:nth-child(3)::after {
   content:"勝"
 }
 
-#eachRecord table tr td:nth-child(4)::after {
+#eachRecord__table tr td:nth-child(4)::after {
   content:"敗"
 }
 
-#eachRecord table tr td:last-child::after {
+#eachRecord__table tr td:last-child::after {
   content:"%"
 }
 
-#eachRecord table tr td a {
+#eachRecord__table tr td a {
   display:block;
   width:100%;
   height:100%;
@@ -58,10 +58,10 @@
   padding:0;
 }
 
-#eachRecord table tr td:first-child a:hover {
+#eachRecord__table tr td:first-child a:hover {
 }
 
-#eachRecord table tr td a img {
+#eachRecord__table tr td a img {
   padding:0;
   margin-bottom:-10px;
 }
@@ -84,7 +84,7 @@
   top:-14px;
 }
 
-#record__addButton {
+#record__addShowButton {
   position:relative;
   top:0px;
   left:800px;
@@ -93,4 +93,16 @@
 
 #record__addButton a {
   height:20px;
+}
+
+.record__addShow,
+.record__addShow-add.record__addShow-add-active {
+  height:100px;
+  padding:20px;
+}
+
+
+.record__addShow-remove.record__addShow-remove-active {
+  height:0px;
+  padding:0px;
 }
