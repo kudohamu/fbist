@@ -25,7 +25,7 @@
         <div id="summary__select" class="uiSelect">
           <select name="cost" ng-model="filter_cost" ng-options="c.cost as c.name for c in options_costs"></select>
         </div><!--summary__select-->
-        <table class="tableStyle" id="eachRecord__table" ng-cloak ng-hide="gundamListDivShow">
+        <table class="tableStyle" id="eachRecord__table" ng-cloak ng-hide="gundamListDivShow || friendListDivShow">
           <thead>
             <tr>
               <th><p><a href="" ng-click="thClick('no')">機体</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('no', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('no', 'desc')" %></p></th>
@@ -50,6 +50,7 @@
         </table><!--eachRecord__table-->
       </div>
       <%= render "shared/select_gundam" %>
+      <%= render "shared/select_friend" %>
     </div><!--eachRecord-->
   </div><!--summaryController-->
 </div><!--summary-->

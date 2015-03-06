@@ -17,7 +17,7 @@ fvistFoundationApp.controller("summaryController", function($scope, $resource, r
       { "name": "2000", "cost": 2000 },
       { "name": "1000", "cost": 1000 }
     ];
-  $scope.record__add = { gundam: { image_path: "", name: "" }, result: { won: true }, team: { free: true }, mode: { ranked: true }};
+  $scope.record__add = { gundam: { id: 1, image_path: "", name: "" }, result: { won: true }, team: { free: true }, mode: { ranked: true }, friend: { id: 1, image_path: "", name: "" }};
   $scope.asc = true;
   $scope.reverse = false;
   $scope.predicate = "no";
@@ -96,6 +96,16 @@ fvistFoundationApp.controller("summaryController", function($scope, $resource, r
   
   });
 
+  var friends_res = $resource("/api/account/friends?other=true");
+  $scope.friend_list = friends_res.query(function() {
+    $scope.record__add.friend.id = $scope.friend_list[0].id;
+    $scope.record__add.friend.image_path = $scope.friend_list[0].image_path;
+    $scope.record__add.friend.name = $scope.friend_list[0].name;
+  },
+  function() {
+    console.log("failed");
+  });
+
   $scope.selectGundam = function(index) {
     if ($scope.filtedGundams) {
       $scope.record__add.gundam.image_path = $scope.filtedGundams[index].image_path;
@@ -112,6 +122,22 @@ fvistFoundationApp.controller("summaryController", function($scope, $resource, r
     $scope.gundamListDivShow = !$scope.gundamListDivShow;
   };
 
+  $scope.selectFriend = function(index) {
+    if ($scope.filtedFriends) {
+      $scope.record__add.friend.image_path = $scope.filtedFriends[index].image_path;
+      $scope.record__add.friend.name = $scope.filtedFriends[index].name;
+      $scope.record__add.friend.id = $scope.filtedFriends[index].id;
+    }else {
+      $scope.record__add.friend.image_path = $scope.friend_list[index].image_path;
+      $scope.record__add.friend.name = $scope.friend_list[index].name;
+      $scope.record__add.friend.id = $scope.friend_list[index].id;
+    }
+  };
+
+  $scope.selectFriendClick = function() {
+    $scope.friendListDivShow = !$scope.friendListDivShow;
+  };
+
   $scope.record__addButtonClick = function() {
     $scope.record__addButtonDisable = true;
     
@@ -120,6 +146,7 @@ fvistFoundationApp.controller("summaryController", function($scope, $resource, r
     record.won = $scope.record__add.result.won;
     record.free = $scope.record__add.team.free;
     record.ranked = $scope.record__add.mode.ranked;
+    record.friend_id = $scope.record__add.friend.id;
     record.$save(function() {
       getTotal();
       getSummary();
@@ -133,6 +160,14 @@ fvistFoundationApp.filter("gundamListFilter", ["$rootScope", "$filter", function
   return function(items, input) {
     var result = $filter("filter")(items, input);
     $rootScope.filtedGundams = result;
+    return result;
+  };
+}]);
+
+fvistFoundationApp.filter("friendListFilter", ["$rootScope", "$filter", function($rootScope, $filter) {
+  return function(items, input) {
+    var result = $filter("filter")(items, input);
+    $rootScope.filtedFriends = result;
     return result;
   };
 }]);

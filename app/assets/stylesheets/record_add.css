@@ -10,19 +10,37 @@
 
 #record__addDiv table {
   margin:0 auto;
+  padding:0;
+  border-collapse:collapse;
 }
 
 #record__addDiv table tr {
-  border-style:solid;
-  border-width:1px;
-  border-color:rgba(0,0,180,0);
-}
-
-#record__addDiv table tr th {
   margin:0;
+  padding:0;
 }
 
-#record__addDiv table tr td {
+#record__addDiv table thead tr th {
+  margin:0;
+  padding:0px;
+  background-color:rgba(0,0,0,0.0);
+  color:black;
+}
+
+
+#record__addDiv table thead tr th:first-child {
+  border-radius:6px 0px 0px 0px;
+}
+
+#record__addDiv table thead tr th:last-child {
+  border-radius:0px 6px 0px 0px;
+}
+
+#record__addDiv table tbody {
+}
+
+#record__addDiv table tbody tr td {
+  margin:0;
+  padding:0;
   width:68px;
   height:68px;
 }
@@ -32,18 +50,47 @@
   height:68px;
 }
 
-#record__addDiv img {
+#record__addSelect img {
   border-style:solid;
   border-width:1px;
   border-color:rgba(0,0,180,0);
+  margin-top:-4px;
 }
 
-#record__addDiv img:hover {
+#record__addFriend a {
+  text-decoration:none;
+}
+
+#record__addSelect img:hover {
   border-style:solid;
   border-width:1px;
   border-color:rgba(0,0,180,0.7);
   border-radius:8px 0px 5px 0px;
   background-color:rgba(0,0,180,0.7);
+}
+
+#record__addFriend img {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0);
+}
+
+#record__addFriend img:hover {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0.7);
+  border-radius:0px;
+}
+
+#record__addFriend p {
+  font-size:12px;
+  color:white;
+  margin-top:-25px;
+  text-align:center;
+  text-shadow:  1px  1px  1px #000,
+                1px -1px  1px #000,
+               -1px  1px  1px #000,
+               -1px -1px  1px #000;
 }
 
 #record__addDiv__submitButton {
@@ -108,4 +155,18 @@
 
 .midnightblueColor:hover {
   background-color:rgba(15,15,102,1);
+}
+
+.record__addLinkButton {
+  display:table-cell;
+  padding:0;
+  margin:0;
+  width:68px;
+  height:68px;
+  vertical-align:middle;
+  position:relative;
+  top:-5px;
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,0,0);
 }
