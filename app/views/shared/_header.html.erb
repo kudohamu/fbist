@@ -1,35 +1,17 @@
 <div class="header">
   <ul class="menu">
-    <li><a href="/account/records/summary">戦績</a></li>
+    <li><span>戦績</span>
+      <ul>
+        <li><a href="/account/records/summary">機体別戦績</a></li>
+        <li><a href="/account/records/friends">フレンド別戦績</a></li>
+      </ul>
+    </li>
     <li><a href="#">履歴</a></li>
-    <li><span>機体一覧</span>
+    <li><a href="">機体ランク表</a></li>
+    <li><span>ユーザ設定</span>
       <ul>
-        <li><a href="#">運営から</a></li>
-        <li><a href="#">アップデート</a></li>
-        <li><a href="#">リリース</a></li>
-        <li><a href="#">スカウト</a></li>
-        <li><a href="#">プレゼント</a></li>
-        <li><a href="#">プロジェクト</a></li>
-      </ul>
-    </li>
-    <li><span>くどはむ さん</span>
-      <ul>
-        <li><a href="#">プロフィール</a></li>
-        <li><a href="#">フレンド</a></li>
-      </ul>
-    </li>
-    <li><span>プロジェクト</span>
-      <ul>
-        <li><a href="#">マイプロジェクト</a></li>
-        <li><a href="#">プロジェクト作成</a></li>
-        <li><a href="#">アナリティクス</a></li>
-      </ul>
-    </li>
-    <li><span>使い方</span>
-      <ul>
-        <li><a href="#">任価って？</a></li>
-        <li><a href="#">Q&amp;A</a></li>
-        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="">登録情報変更</a></li>
+        <li><a href="">フレンド</a></li>
       </ul>
     </li>
     <li><%= link_to "ログアウト", "/users/sign_out", method: :delete  %></li>
