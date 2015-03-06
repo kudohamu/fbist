@@ -6,9 +6,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   
-  belongs_to :friend, class_name: "User", foreign_key: "friend_id"
-
   has_many :records
+  has_many :friendlist_of_from_user, class_name: "FriendList", foreign_key: "from_user_id", dependent: :destroy
+  has_many :friendlist_of_to_user, class_name: "FriendList", foreign_key: "to_user_id", dependent: :destroy
+  has_many :friends_of_from_user, through: :friendlist_of_from_user, source: "to_user"
+  has_many :friends_of_to_user, through: :friendlist_of_to_user, source: "from_user"
 
   mount_uploader :icon, GundamIconUploader
 
@@ -19,6 +21,9 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :uid, scope: [:provider]
 
+  def friends
+     self.friends_of_from_user + self.friends_of_to_user
+  end
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
