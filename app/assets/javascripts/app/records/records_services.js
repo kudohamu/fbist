@@ -1,12 +1,6 @@
-/*
-angular.module('recordsSummaryApp').factory('JsonData', function($http) {
-  return {
-    getRecords: function () {
-      return $http.get('/api/account/records/summary').success(function(data, status, headers, config) {
-        return data;
-      });
-    }
-  }
-});
-*/
+var appName = "FVistFoundation";
+var fvistFoundationApp = angular.module(appName);
 
+fvistFoundationApp.factory("recordFactory", function($resource) {
+  return $resource("/api/account/records");
+});

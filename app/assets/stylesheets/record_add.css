@@ -1,0 +1,172 @@
+#record__addDiv {
+  margin:0px auto;
+  margin: 10px 150px 10px 150px;
+  background-color:rgba(255,255,255,0.7);
+  border-radius:5px;
+  overflow:hidden;
+  height:0px;
+  padding:0px 20px;
+}
+
+#record__addDiv table {
+  margin:0 auto;
+  padding:0;
+  border-collapse:collapse;
+}
+
+#record__addDiv table tr {
+  margin:0;
+  padding:0;
+}
+
+#record__addDiv table thead tr th {
+  margin:0;
+  padding:0px;
+  background-color:rgba(0,0,0,0.0);
+  color:black;
+}
+
+
+#record__addDiv table thead tr th:first-child {
+  border-radius:6px 0px 0px 0px;
+}
+
+#record__addDiv table thead tr th:last-child {
+  border-radius:0px 6px 0px 0px;
+}
+
+#record__addDiv table tbody {
+}
+
+#record__addDiv table tbody tr td {
+  margin:0;
+  padding:0;
+  width:68px;
+  height:68px;
+}
+
+#record__addDiv table tr td:first-child {
+  width:136px;
+  height:68px;
+}
+
+#record__addSelect img {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0);
+  margin-top:-4px;
+}
+
+#record__addFriend a {
+  text-decoration:none;
+}
+
+#record__addSelect img:hover {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0.7);
+  border-radius:8px 0px 5px 0px;
+  background-color:rgba(0,0,180,0.7);
+}
+
+#record__addFriend img {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0);
+}
+
+#record__addFriend img:hover {
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,180,0.7);
+  border-radius:0px;
+}
+
+#record__addFriend p {
+  font-size:12px;
+  color:white;
+  margin-top:-25px;
+  text-align:center;
+  text-shadow:  1px  1px  1px #000,
+                1px -1px  1px #000,
+               -1px  1px  1px #000,
+               -1px -1px  1px #000;
+}
+
+#record__addDiv__submitButton {
+  display:block;
+  font-size:14px;
+  font-weight:bold;
+  padding:5px 20px;
+  color:rgba(255,255,255,1);
+  background-color:rgba(230,80,80,1);
+  border-radius:6px;
+  margin:0 auto;
+  cursor:pointer;
+}
+
+#record__addDiv__submitButton:active {
+  background-color:rgba(220,70,70,1);
+}
+
+.redColor {
+  background-color:rgba(230,80,80,1);
+}
+
+.redColor:hover {
+  background-color:rgba(220,70,70,1);
+}
+
+.blueColor {
+  background-color:rgba(80,80,230,1);
+}
+
+.blueColor:hover {
+  background-color:rgba(70,70,220,1);
+}
+
+.darkGreenColor {
+  background-color:rgba(80,230,80,1);
+}
+
+.darkGreenColor:hover {
+  background-color:rgba(70,220,70,1);
+}
+
+.lightCyanColor {
+  background-color:rgba(60,210,210,1);
+}
+
+.lightCyanColor:hover {
+  background-color:rgba(50,200,200,1);
+}
+
+.maroonColor {
+  background-color:rgba(128,0,0,1);
+}
+
+.maroonColor:hover {
+  background-color:rgba(108,0,0,1);
+}
+
+.midnightblueColor {
+  background-color:rgba(25,25,112,1);
+}
+
+.midnightblueColor:hover {
+  background-color:rgba(15,15,102,1);
+}
+
+.record__addLinkButton {
+  display:table-cell;
+  padding:0;
+  margin:0;
+  width:68px;
+  height:68px;
+  vertical-align:middle;
+  position:relative;
+  top:-5px;
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(0,0,0,0);
+}

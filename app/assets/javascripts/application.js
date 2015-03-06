@@ -15,8 +15,7 @@
 //= require turbolinks
 //= require angular/angular
 //= require angular/angular-resource
-//= require angular.min
-//= require angular-resource.min
+//= require angular/angular-animate
 //= require app/records/records_controller
 //= require app/records/records_services
 //= require base

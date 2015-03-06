@@ -1,0 +1,15 @@
+<div class="modalBackground" ng-click="selectFriendClick()" ng-show="friendListDivShow">
+  <div id="friendListDiv">
+    <div id="friendList__selectDiv">
+      <br/>検索&emsp;：<input ng-model="friendList__searchText" ng-click="selectFriendClick()">
+    </div>
+    <ul>
+      <li ng-repeat="friend in friend_list | friendListFilter:{name: friendList__searchText}">
+        <div ng-click="selectFriend($index)">
+          <img src={{friend.image_path}}>
+          <p>{{friend.name}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

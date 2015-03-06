@@ -32,7 +32,7 @@ Gundam.create(
 
 Gundam.create(
   icon: File.open(File.join(Rails.root, "app/assets/images/gundams/msm01071s.png")),
-  name: "ザクⅡ",
+  name: "ザクII",
   no: 5000,
   wiki: "360.html",
   cost_id: 1
@@ -56,7 +56,7 @@ Gundam.create(
 
 Gundam.create(
   icon: File.open(File.join(Rails.root, "app/assets/images/gundams/ms4f764.png")),
-  name: "ジ・Ｏ",
+  name: "ジ・O",
   no: 8000,
   wiki: "34.html",
   cost_id: 3
@@ -136,7 +136,7 @@ Gundam.create(
 
 Gundam.create(
   icon: File.open(File.join(Rails.root, "app/assets/images/gundams/msa2f22.png")),
-  name: "ザクⅢ改",
+  name: "ザクIII改",
   no: 18000,
   wiki: "270.html",
   cost_id: 1

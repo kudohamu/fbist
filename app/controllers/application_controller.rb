@@ -43,6 +43,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :icon_cache
   end
 
+  def integer?(param)
+    Integer(param)
+    true
+  rescue ArgumentError
+    false
+  end
+
 #
 #  private
 #  def authorize
