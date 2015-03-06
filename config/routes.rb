@@ -76,6 +76,7 @@ Rails.application.routes.draw do
       resources :friends, only: [:index]
     end
 
+    resources :users, only: [:index]
     resources :gundams, only: [:index]
   end
 end
