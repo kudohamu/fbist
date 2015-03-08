@@ -1,6 +1,10 @@
 class RecordsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    @page_title = "履歴"
+  end
+
   def summary
     @page_title = "機体別戦績"
   end
