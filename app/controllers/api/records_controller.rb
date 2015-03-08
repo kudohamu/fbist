@@ -1,6 +1,18 @@
 class Api::RecordsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    record_num = 30
+    page = 0
+
+    if integer?(params[:page].to_i)
+      page = params[:page].to_i
+    end
+
+    @records = Record.order("id desc").limit(record_num).offset(record_num * page)
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
+
   def summary
     @totals = Hash.new
     @wons = Hash.new
