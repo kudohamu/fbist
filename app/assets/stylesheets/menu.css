@@ -18,7 +18,9 @@
   position:relative;
   background-color:rgba(091,091,151,1);
   background-size:10px 10px;
+  /*
   background-image:radial-gradient(rgba(081,081,141,1),rgba(081,081,141,1),rgba(081,081,141,1) 2px,transparent 2px,transparent);
+  */
 }
 
 .menu li span {
@@ -28,7 +30,7 @@
   text-decoration: none;
   padding: 15px 2px;
   border-color:#999;
-  transition:.3s;
+  transition:.1s;
 
   border-left:1px solid #444;
   box-shadow: 2px  0px  0px rgba(225,225,225,0.3) inset,
@@ -57,7 +59,7 @@
   text-decoration: none;
   padding: 15px 2px;
   border-color:#999;
-  transition:.3s;
+  transition:.1s;
 
   border-left:1px solid #444;
   box-shadow: 2px  0px  0px rgba(225,225,225,0.3) inset,
@@ -69,7 +71,7 @@
 }
 
 .menu li a:hover {
-  transition:.3s;
+  transition:.1s;
   background-color:rgba(0,0,0,0.3);
 }
 

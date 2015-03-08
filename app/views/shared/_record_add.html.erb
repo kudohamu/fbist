@@ -13,7 +13,7 @@
     <tr>
       <td><a href="" id="record__addSelect" ng-click="selectGundamClick()"><img src="{{record__add.gundam.image_path}}" alt="{{record__add.gundam.name}}"></a></td>
       <td><a href="" class="link__button redColor record__addLinkButton" ng-click="record__add.result.won = !record__add.result.won" ng-class="{blueColor: !record__add.result.won}">{{record__add.result.won ? "勝ち" : "負け" }}</a></td>
-      <td><a href="" class="link__button maroonColorn record__addLinkButton" ng-click="record__add.team.free = !record__add.team.free" ng-class="{midnightblueColor: !record__add.team.free}">{{record__add.team.free ? "フリー" : "固定" }}</a></td>
+      <td><a href="" class="link__button maroonColor record__addLinkButton" ng-click="record__add.team.free = !record__add.team.free" ng-class="{midnightblueColor: !record__add.team.free}">{{record__add.team.free ? "フリー" : "固定" }}</a></td>
       <td><a href="" class="link__button darkGreenColor record__addLinkButton" ng-click="record__add.mode.ranked = !record__add.mode.ranked" ng-class="{lightCyanColor: !record__add.mode.ranked}">{{record__add.mode.ranked ? "ランクマ" : "プレマ" }}</a></td>
       <td id="record__addFriend"><a href="" ng-click="selectFriendClick()"><img src="{{record__add.friend.image_path}}"><p>{{record__add.friend.name}}</p></a></td>
     </tr>

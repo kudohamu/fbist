@@ -3,6 +3,7 @@ class RecordsController < ApplicationController
 
   def index
     @page_title = "履歴"
+    @recordsMaxNum = Record.count()
   end
 
   def summary
