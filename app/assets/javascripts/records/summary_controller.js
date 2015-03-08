@@ -1,13 +1,4 @@
-var appName = "FVistFoundation";
-var fvistFoundationApp = angular.module(appName, ["ngResource"]);
-
-fvistFoundationApp.config(
-  ["$httpProvider", function($httpProvider) {
-    $httpProvider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content");
-  }]
-);
-
-fvistFoundationApp.controller("summaryController", function($scope, $resource, recordFactory) {
+fvistFoundationApp.controller("summaryController", ["$scope", "$resource", "recordFactory" , function($scope, $resource, recordFactory) {
   //初期化
   $scope.sort = { no: true, total: false, won: false, lost: false, rate: false };
   var costs_array = [
@@ -154,7 +145,7 @@ fvistFoundationApp.controller("summaryController", function($scope, $resource, r
     });
     
   };
-});
+}]);
 
 fvistFoundationApp.filter("gundamListFilter", ["$rootScope", "$filter", function($rootScope, $filter) {
   return function(items, input) {
