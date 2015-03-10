@@ -2,14 +2,12 @@ class Api::RecordsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    offset = 0
     record_num = 30
-    page = 0
 
-    if integer?(params[:page].to_i)
-      page = params[:page].to_i
-    end
+    offset = params[:offset].to_i if params[:offset].present?
 
-    @records = Record.order("id desc").limit(record_num).offset(record_num * page)
+    @records = Record.where(user: current_user).order("id desc").limit(record_num).offset(offset)
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
