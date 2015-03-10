@@ -71,4 +71,20 @@ class Api::RecordsController < ApplicationController
     puts @records.inspect
     render :formats => [:json], :handlers => [:jbuilder]
   end
+
+  def destroy
+    @success = false
+    if integer?(params[:id])
+      @record = Record.find_by_id(params[:id])
+      if @record.present? && @record.user_id == current_user.id
+        if @record.destroy
+          @success = true
+        end
+      end
+    end
+    
+    raise Exception unless @success
+
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
 end
