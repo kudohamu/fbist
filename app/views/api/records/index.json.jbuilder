@@ -1,4 +1,5 @@
 json.array! @records do |record|
+  json.id record.id
   json.gundam do
     json.id record.gundam.id
     json.name record.gundam.name
