@@ -1,4 +1,5 @@
 <div id="records" ng-controller="recordsIndexController">
+  <%= render "shared/messages" %>
   <table>
     <thead>
       <tr>
@@ -21,6 +22,10 @@
           <p>{{record.friend.name}}</p>
         </td>
         <td class="glassColor">{{record.datetime}}</td>
+        <td>
+          <a class="link__button" id="records__modifyButton">修正</a>
+          <a class="link__button" id="records__deleteButton" ng-click="deleteRecordClick(record.id, $index)">削除</a>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -31,4 +36,5 @@
     <a class="link__button" ng-click="moreLoad()">▼</a>
   </div>
   <%= hidden_field_tag "records_max", @recordsMaxNum, id: "records__max" %>
+  <%= render "shared/records/delete_dialog" %>
 </div>

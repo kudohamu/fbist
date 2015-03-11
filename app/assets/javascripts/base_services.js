@@ -9,5 +9,5 @@ fvistFoundationApp.config(
 );
 
 fvistFoundationApp.factory("recordFactory", function($resource) {
-  return $resource("/api/account/records");
+  return $resource("/api/account/records/:id", {id: "@id"});
 });
