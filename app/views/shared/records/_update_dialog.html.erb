@@ -15,7 +15,7 @@
       <tr>
         <td><a href="" ng-click="selectGundamClick()"><img src="{{record.gundam.image_path}}" alt="{{record.gundam.name}}"></a></td>
         <td><a href="" class="link__button redColor update_recordLinkButton" ng-click="record.won = !record.won" ng-class="{blueColor: !record.won}">{{record.won ? "勝ち" : "負け" }}</a></td>
-        <td><a href="" class="link__button maroonColor update_recordLinkButton" ng-click="record.free = !record.free" ng-class="{midnightblueColor: !record.free}">{{record.free ? "フリー" : "固定" }}</a></td>
+        <td><a href="" class="link__button maroonColor update_recordLinkButton" ng-click="record.free = !record.free" ng-class="{midnightblueColor: !record.free}">{{record.free ? "フリー" : "シャッフル" }}</a></td>
         <td><a href="" class="link__button darkGreenColor update_recordLinkButton" ng-click="record.ranked = !record.ranked" ng-class="{lightCyanColor: !record.ranked}">{{record.ranked ? "ランクマ" : "プレマ" }}</a></td>
         <td id="update_recordFriend"><a href="" ng-click="selectFriendClick()"><img src="{{record.friend.image_path}}"><p>{{record.friend.name}}</p></a></td>
       </tr>
