@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require angular/angular
-//= require angular/angular-resource
-//= require angular/angular-animate
-//= require app/records/records_controller
-//= require app/records/records_services
-//= require base
+//= require angular.min
+//= require angular-resource.min
+//= require angular-animate.min
+//= require base_services
+//= require records/summary_controller
+//= require records/summary_services
+//= require records/index_controller
+//= require records/index_services
 //= require_tree .

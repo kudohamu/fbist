@@ -1,0 +1,33 @@
+<div class="modalBackground" ng-click="deleteRecordClick(delete_record.id, delete_index)" ng-show="deleteRecordDivShow">
+  <div id="deleteRecordDiv" ng-click="deleteRecordDivShow = false">
+    <h2>削除しますか？</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>機体</th>
+          <th>勝敗</th>
+          <th>チーム</th>
+          <th>マッチ</th>
+          <th>相方</th>
+          <th>記録日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="http://www4.atwiki.jp/arcgundamexvsfuvo/pages/{{delete_record.gundam.wiki}}" target= "_blank" %><img src={{delete_record.gundam.image_path}} alt={{delete_record.gundam.name}}></a></td>
+          <td class="records__redColor" ng-class="{records__blueColor: !delete_record.won}">{{record.won ? "勝ち": "負け" }}</td>
+          <td class="records__maroonColor" ng-class="{records__midnightblueColor: !delete_record.free}">{{record.free ? "フリー": "固定" }}</td>
+          <td class="records__darkGreenColor" ng-class="{records__lightCyanColor: !delete_record.ranked}">{{record.ranked ? "ランクマ": "プレマ" }}</td>
+          <td>
+            <img src="{{delete_record.friend.image_path}}">
+            <p>{{delete_record.friend.name}}</p>
+          </td>
+          <td class="glassColor">{{delete_record.datetime}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="deleteRecordButton">
+      <a class="link__button" href="" ng-click="deleteRecord(delete_record.id, delete_index)">OK</a>
+    </div>
+  </div>
+</div>

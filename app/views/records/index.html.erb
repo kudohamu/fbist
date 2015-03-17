@@ -1,0 +1,43 @@
+<div id="records" ng-controller="recordsIndexController">
+  <%= render "shared/messages" %>
+  <table>
+    <thead>
+      <tr>
+        <th>機体</th>
+        <th>勝敗</th>
+        <th>チーム</th>
+        <th>マッチ</th>
+        <th>相方</th>
+        <th>記録日時</th>
+      </tr>
+    </thead>
+    <tbody id="records__tbody" ng-hide="updateRecordDivShow">
+      <tr ng-repeat="record in records" id="{{$index}}">
+        <td><a href="http://www4.atwiki.jp/arcgundamexvsfuvo/pages/{{record.gundam.wiki}}" target= "_blank" %><img src={{record.gundam.image_path}} alt={{record.gundam.name}}></a></td>
+        <td class="records__redColor" ng-class="{records__blueColor: !record.won}">{{record.won ? "勝ち": "負け" }}</td>
+        <td class="records__maroonColor" ng-class="{records__midnightblueColor: !record.free}">{{record.free ? "フリー": "固定" }}</td>
+        <td class="records__darkGreenColor" ng-class="{records__lightCyanColor: !record.ranked}">{{record.ranked ? "ランクマ": "プレマ" }}</td>
+        <td>
+          <img src="{{record.friend.image_path}}">
+          <p>{{record.friend.name}}</p>
+        </td>
+        <td class="glassColor">{{record.datetime}}</td>
+        <td>
+          <a class="link__button" id="records__modifyButton" ng-click="updateRecordClick(record.id, $index)">修正</a>
+          <a class="link__button" id="records__deleteButton" ng-click="deleteRecordClick(record.id, $index)">削除</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="loadingImageDiv" ng-show="recordsLoading">
+    <%= image_tag "loader.GIF", alt: "loading..." %>
+  </div>
+  <div id="records__moreLoad" ng-hide="recordsLoading || recordLimited">
+    <a class="link__button" ng-click="moreLoad()">▼</a>
+  </div>
+  <%= hidden_field_tag "records_max", @recordsMaxNum, id: "records__max" %>
+  <%= render "shared/records/delete_dialog" %>
+  <%= render "shared/records/update_dialog" %>
+  <%= render "shared/select_gundam" %>
+  <%= render "shared/select_friend" %>
+</div>

@@ -1,0 +1,84 @@
+#records__moreLoad a {
+  margin:0 auto;
+  width:150px;
+}
+
+#records table {
+  color:white;
+  margin:0 auto;
+  margin-bottom:20px;
+  border-width:1px;
+  border-collapse: collapse;
+}
+
+#records table tbody tr td {
+  width:100px;
+  height:68px;
+  padding:0;
+  text-align:center;
+  font-size:16px;
+  color:white;
+  border: 2px outset rgba(255,255,255,0.5);
+  vertical-align:center;
+}
+
+#records table tbody tr td:nth-child(5) {
+  width:68px;
+}
+
+#records table tbody tr td:nth-child(6) {
+  width:200px;
+}
+
+#records table tbody tr td img {
+  margin-bottom:-7px;
+}
+
+#records table tbody tr td p {
+  background-color:rgba(0,0,0,0.6);
+  color:white;
+  position:relative;
+  top:-29px;
+  text-align:center;
+  font-size:12px;
+  margin-bottom:-30px;
+}
+
+#records__modifyButton {
+  width:80px;
+  height:14px;
+}
+
+#records__deleteButton {
+  width:80px;
+  height:14px;
+  background-color:rgba(201,101,101,1);
+}
+
+#records__deleteButton:hover {
+  background-color:rgba(191,091,091,1);
+}
+
+.records__redColor {
+  background-color:rgba(230,80,80,1);
+}
+
+.records__blueColor {
+  background-color:rgba(80,80,230,1);
+}
+
+.records__darkGreenColor {
+  background-color:rgba(80,230,80,1);
+}
+
+.records__lightCyanColor {
+  background-color:rgba(60,210,210,1);
+}
+
+.records__maroonColor {
+  background-color:rgba(128,0,0,1);
+}
+
+.records__midnightblueColor {
+  background-color:rgba(25,25,112,1);
+}

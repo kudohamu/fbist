@@ -1,6 +1,16 @@
 class Api::RecordsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    offset = 0
+    record_num = 30
+
+    offset = params[:offset].to_i if params[:offset].present?
+
+    @records = Record.where(user: current_user).order("id desc").limit(record_num).offset(offset)
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
+
   def summary
     @totals = Hash.new
     @wons = Hash.new
@@ -59,6 +69,31 @@ class Api::RecordsController < ApplicationController
     puts "sucess: " + @success.to_s
     @records = Record.where(user: current_user).where(gundam_id: @record.gundam_id)
     puts @records.inspect
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
+
+  def update
+    puts params[:record]
+    @record = Record.find_by_id(params[:id])
+    raise Exception unless @record.user_id == current_user.id
+    
+    @record.update!(params.require(:record).permit(:gundam_id, :won, :free, :ranked, :friend_id))
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
+
+  def destroy
+    @success = false
+    if integer?(params[:id])
+      @record = Record.find_by_id(params[:id])
+      if @record.present? && @record.user_id == current_user.id
+        if @record.destroy
+          @success = true
+        end
+      end
+    end
+    
+    raise Exception unless @success
+
     render :formats => [:json], :handlers => [:jbuilder]
   end
 end

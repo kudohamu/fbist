@@ -109,54 +109,6 @@
   background-color:rgba(220,70,70,1);
 }
 
-.redColor {
-  background-color:rgba(230,80,80,1);
-}
-
-.redColor:hover {
-  background-color:rgba(220,70,70,1);
-}
-
-.blueColor {
-  background-color:rgba(80,80,230,1);
-}
-
-.blueColor:hover {
-  background-color:rgba(70,70,220,1);
-}
-
-.darkGreenColor {
-  background-color:rgba(80,230,80,1);
-}
-
-.darkGreenColor:hover {
-  background-color:rgba(70,220,70,1);
-}
-
-.lightCyanColor {
-  background-color:rgba(60,210,210,1);
-}
-
-.lightCyanColor:hover {
-  background-color:rgba(50,200,200,1);
-}
-
-.maroonColor {
-  background-color:rgba(128,0,0,1);
-}
-
-.maroonColor:hover {
-  background-color:rgba(108,0,0,1);
-}
-
-.midnightblueColor {
-  background-color:rgba(25,25,112,1);
-}
-
-.midnightblueColor:hover {
-  background-color:rgba(15,15,102,1);
-}
-
 .record__addLinkButton {
   display:table-cell;
   padding:0;

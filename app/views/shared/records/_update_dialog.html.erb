@@ -1,0 +1,28 @@
+<div class="modalBackground" ng-click="updateRecordHide()" ng-show="updateRecordDivShow">
+  <div id="updateRecordDiv" ng-click="updateRecordDivClick = true">
+    <h2>どのように更新しますか？</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>機体</th>
+          <th>勝敗</th>
+          <th>チーム</th>
+          <th>マッチ</th>
+          <th>フレンド</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><a href="" ng-click="selectGundamClick()"><img src="{{record.gundam.image_path}}" alt="{{record.gundam.name}}"></a></td>
+        <td><a href="" class="link__button redColor update_recordLinkButton" ng-click="record.won = !record.won" ng-class="{blueColor: !record.won}">{{record.won ? "勝ち" : "負け" }}</a></td>
+        <td><a href="" class="link__button maroonColor update_recordLinkButton" ng-click="record.free = !record.free" ng-class="{midnightblueColor: !record.free}">{{record.free ? "フリー" : "固定" }}</a></td>
+        <td><a href="" class="link__button darkGreenColor update_recordLinkButton" ng-click="record.ranked = !record.ranked" ng-class="{lightCyanColor: !record.ranked}">{{record.ranked ? "ランクマ" : "プレマ" }}</a></td>
+        <td id="update_recordFriend"><a href="" ng-click="selectFriendClick()"><img src="{{record.friend.image_path}}"><p>{{record.friend.name}}</p></a></td>
+      </tr>
+      </tbody>
+    </table>
+    <div id="updateRecordButton">
+      <a class="link__button" href="" ng-click="updateRecord(record.id, update_index)">更新</a>
+    </div>
+  </div>
+</div>
