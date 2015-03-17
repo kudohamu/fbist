@@ -3,8 +3,7 @@ class Api::FriendsController < ApplicationController
 
   def index
     @friends = current_user.friends
-
-    if params[:other].present?
+    unless params[:other]
       @friends.unshift(User.find_by_id(1))
     end
     render :formats => [:json], :handlers => [:jbuilder]

@@ -1,4 +1,4 @@
-fvistFoundationApp.controller("summaryController", ["$scope", "$resource", "recordFactory" , function($scope, $resource, recordFactory) {
+fvistFoundationApp.controller("summaryController", ["$scope", "$resource", "recordFactory", "gundamsFactory", "friendsFactory", "recordTotalFactory", "recordSummaryFactory", "selectGundamFactory", "selectFriendFactroy", "messageFactory", function($scope, $resource, recordFactory, gundamsFactory, friendsFactory, recordTotalFactory, recordSummaryFactory, selectGundamFactory, selectFriendFactroy, messageFactory) {
   //初期化
   $scope.sort = { no: true, total: false, won: false, lost: false, rate: false };
   var costs_array = [
@@ -8,7 +8,7 @@ fvistFoundationApp.controller("summaryController", ["$scope", "$resource", "reco
       { "name": "2000", "cost": 2000 },
       { "name": "1000", "cost": 1000 }
     ];
-  $scope.record__add = { gundam: { id: 1, image_path: "", name: "" }, result: { won: true }, team: { free: true }, mode: { ranked: true }, friend: { id: 1, image_path: "", name: "" }};
+  $scope.record = {id:1, gundam: { id: 1, image_path: "", name: "" }, won: true, free: true, ranked: true, friend: { id: 1, image_path: "", name: "" }};
   $scope.asc = true;
   $scope.reverse = false;
   $scope.predicate = "no";
@@ -16,8 +16,7 @@ fvistFoundationApp.controller("summaryController", ["$scope", "$resource", "reco
   $scope.filter_cost = $scope.options_costs[0].cost;
 
   function getTotal() {
-    var res = $resource("/api/account/records/total");
-    $scope.total = res.get(function() {
+    $scope.total = recordTotalFactory.get(function() {
       $scope.userLoading = true;
     }, 
     function() {
@@ -32,8 +31,7 @@ fvistFoundationApp.controller("summaryController", ["$scope", "$resource", "reco
     $scope.loadingSuccess = false;
     $scope.loadingFailed  = false;
 
-    var res = $resource("/api/account/records/summary");
-    $scope.records = res.query(function() {
+    $scope.records = recordSummaryFactory.query(function() {
       $scope.recordsLoading = true;
       $scope.loadingSuccess = true;
     }, 
@@ -76,89 +74,62 @@ fvistFoundationApp.controller("summaryController", ["$scope", "$resource", "reco
     }
   };
 
-  var gundams_res = $resource("/api/gundams");
-  $scope.gundams = gundams_res.query(function() {
+  $scope.gundams = gundamsFactory.query(function() {
+    $scope.gundamList__searchText = "";
     $scope.gundamList__filterCost = $scope.options_costs[0].cost;
-    $scope.record__add.gundam.image_path = $scope.gundams[0].image_path;
-    $scope.record__add.gundam.name = $scope.gundams[0].name;
-    $scope.record__add.gundam.id = $scope.gundams[0].id;
+    $scope.record.gundam.image_path = $scope.gundams[0].image_path;
+    $scope.record.gundam.name = $scope.gundams[0].name;
+    $scope.record.gundam.id = $scope.gundams[0].id;
   }, 
   function() {
   
   });
 
-  var friends_res = $resource("/api/account/friends?other=true");
-  $scope.friend_list = friends_res.query(function() {
-    $scope.record__add.friend.id = $scope.friend_list[0].id;
-    $scope.record__add.friend.image_path = $scope.friend_list[0].image_path;
-    $scope.record__add.friend.name = $scope.friend_list[0].name;
+  $scope.friend_list = friendsFactory.query(function() {
+    $scope.friendList__searchText = "";
+    $scope.record.friend.id = $scope.friend_list[0].id;
+    $scope.record.friend.image_path = $scope.friend_list[0].image_path;
+    $scope.record.friend.name = $scope.friend_list[0].name;
   },
   function() {
-    console.log("failed");
+
   });
 
-  $scope.selectGundam = function(index) {
-    if ($scope.filtedGundams) {
-      $scope.record__add.gundam.image_path = $scope.filtedGundams[index].image_path;
-      $scope.record__add.gundam.name = $scope.filtedGundams[index].name;
-      $scope.record__add.gundam.id = $scope.filtedGundams[index].id;
-    }else {
-      $scope.record__add.gundam.image_path = $scope.gundams[index].image_path;
-      $scope.record__add.gundam.name = $scope.gundams[index].name;
-      $scope.record__add.gundam.id = $scope.gundams[index].id;
-    }
-  };
-
   $scope.selectGundamClick = function() {
-    $scope.gundamListDivShow = !$scope.gundamListDivShow;
+    selectGundamFactory.selectGundamClick();
   };
 
-  $scope.selectFriend = function(index) {
-    if ($scope.filtedFriends) {
-      $scope.record__add.friend.image_path = $scope.filtedFriends[index].image_path;
-      $scope.record__add.friend.name = $scope.filtedFriends[index].name;
-      $scope.record__add.friend.id = $scope.filtedFriends[index].id;
-    }else {
-      $scope.record__add.friend.image_path = $scope.friend_list[index].image_path;
-      $scope.record__add.friend.name = $scope.friend_list[index].name;
-      $scope.record__add.friend.id = $scope.friend_list[index].id;
-    }
+  $scope.selectGundam = function(index) {
+    selectGundamFactory.selectGundam(index, $scope.record);
   };
 
   $scope.selectFriendClick = function() {
-    $scope.friendListDivShow = !$scope.friendListDivShow;
+    selectFriendFactroy.selectFriendClick();
+  };
+
+  $scope.selectFriend = function(index) {
+    selectFriendFactroy.selectFriend(index, $scope.record);
   };
 
   $scope.record__addButtonClick = function() {
     $scope.record__addButtonDisable = true;
     
     var record = new recordFactory;
-    record.gundam_id = $scope.record__add.gundam.id;
-    record.won = $scope.record__add.result.won;
-    record.free = $scope.record__add.team.free;
-    record.ranked = $scope.record__add.mode.ranked;
-    record.friend_id = $scope.record__add.friend.id;
+    record.gundam_id = $scope.record.gundam.id;
+    record.won = $scope.record.won;
+    record.free = $scope.record.free;
+    record.ranked = $scope.record.ranked;
+    record.friend_id = $scope.record.friend.id;
     record.$save(function() {
       getTotal();
       getSummary();
       $scope.record__addButtonDisable = false;
+      messageFactory.show("戦績を追加しました。");
+    }, function() {
+      messageFactory.show("戦績の追加に失敗しました。");
     });
     
   };
 }]);
 
-fvistFoundationApp.filter("gundamListFilter", ["$rootScope", "$filter", function($rootScope, $filter) {
-  return function(items, input) {
-    var result = $filter("filter")(items, input);
-    $rootScope.filtedGundams = result;
-    return result;
-  };
-}]);
 
-fvistFoundationApp.filter("friendListFilter", ["$rootScope", "$filter", function($rootScope, $filter) {
-  return function(items, input) {
-    var result = $filter("filter")(items, input);
-    $rootScope.filtedFriends = result;
-    return result;
-  };
-}]);

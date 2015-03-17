@@ -1,3 +1,4 @@
+/*
 #top__alert {
   margin:0 auto;
   margin-bottom:10px;
@@ -20,6 +21,7 @@
 #message {
   margin:0px auto;
 }
+*/
 
 .alert, .notice {
   margin:0 auto;
@@ -39,3 +41,65 @@
   color:rgb(130,0,0);
   font-size:14px;
 }
+
+#messageDiv {
+  position:fixed;
+  top:52px;
+  width:1047px;
+  margin:0 auto;
+  margin-left:-9px;
+  background-color:rgba(230,150,150,1);
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(255,0,0,1);
+  text-align:left;
+  color:rgb(130,0,0);
+  font-size:14px;
+  z-index:5000;
+}
+
+#messageDiv p {
+  width:100%;
+  padding:10px 20px;
+  margin:0px;
+}
+
+.messageHide {
+  opacity:0;
+}
+
+.messageShow {
+  opacity:1;
+}
+
+.messageShow-add,
+.messageShow-remove {
+ transition: 1s linear all;
+}
+
+.messageShow-add-active {
+  opacity:1;
+}
+
+.messageShow-remove-active {
+  opacity:0;
+}
+
+/*
+.messageShow.ng-add {
+  opacity:0;
+}
+
+.messageShow.ng-add-active {
+  opacity:1;
+}
+
+.messageShow.ng-remove {
+  opacity:1;
+}
+
+.messageShow.ng-remove-active {
+  height:0;
+  opacity:0;
+} 
+*/

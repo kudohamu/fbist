@@ -26,7 +26,7 @@
   width:68px;
 }
 
-#records table tbody tr td:last-child {
+#records table tbody tr td:nth-child(6) {
   width:200px;
 }
 
@@ -44,7 +44,20 @@
   margin-bottom:-30px;
 }
 
+#records__modifyButton {
+  width:80px;
+  height:14px;
+}
 
+#records__deleteButton {
+  width:80px;
+  height:14px;
+  background-color:rgba(201,101,101,1);
+}
+
+#records__deleteButton:hover {
+  background-color:rgba(191,091,091,1);
+}
 
 .records__redColor {
   background-color:rgba(230,80,80,1);

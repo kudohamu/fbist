@@ -72,6 +72,15 @@ class Api::RecordsController < ApplicationController
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
+  def update
+    puts params[:record]
+    @record = Record.find_by_id(params[:id])
+    raise Exception unless @record.user_id == current_user.id
+    
+    @record.update!(params.require(:record).permit(:gundam_id, :won, :free, :ranked, :friend_id))
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
+
   def destroy
     @success = false
     if integer?(params[:id])
