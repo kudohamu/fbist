@@ -66,7 +66,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resource :account do
-      resources :records, only: [:index, :create, :destroy] do
+      resources :records, only: [:index, :create, :update, :destroy] do
         collection do
           get 'summary'
           get 'total'
