@@ -43,7 +43,7 @@ gem 'carrierwave', '0.10.0'
 gem 'rmagick', '2.13.3'
 gem 'dotenv-rails', '1.0.2'
 gem 'fog', '1.26.0'
-gem 'angular-rails-engine', '1.2.13.0'
+# gem 'angular-rails-engine', '1.2.13.0'
 
 gem 'devise', '3.4.1'
 gem 'omniauth', '1.2.2'
