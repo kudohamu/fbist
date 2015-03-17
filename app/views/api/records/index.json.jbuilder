@@ -4,6 +4,7 @@ json.array! @records do |record|
     json.id record.gundam.id
     json.name record.gundam.name
     json.image_path record.gundam.icon.url
+    json.wiki record.gundam.wiki
   end
   json.won record.won
   json.free record.free
