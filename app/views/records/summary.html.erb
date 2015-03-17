@@ -1,4 +1,5 @@
 <div id="summary" ng-controller="summaryController">
+  <%= render "shared/messages" %>
   <div>
     <div id="summary__user">
       <div class="loadingImageDiv" ng-hide="userLoading"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
@@ -19,7 +20,7 @@
       </div>
       <div ng-show="loadingSuccess">
         <div id="record__addShowButton">
-        <a href="" class="link__button" ng-click="record__addDivShow = !record__addDivShow">{{ !record__addDivShow ? "戦績追加" : "閉じる" }}</a>
+          <a href="" class="link__button" ng-click="record__addDivShow = !record__addDivShow">{{ !record__addDivShow ? "戦績追加" : "閉じる" }}</a>
         </div>
         <%= render "shared/record_add" %>
         <div id="summary__select" class="uiSelect">
