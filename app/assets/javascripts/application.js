@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require angular/angular
-//= require angular/angular-resource
-//= require angular/angular-animate
+//= require angular.min
+//= require angular-resource.min
+//= require angular-animate.min
 //= require base_services
 //= require records/summary_controller
 //= require records/summary_services
