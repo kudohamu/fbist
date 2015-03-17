@@ -55,6 +55,9 @@ fvistFoundationApp.controller("recordsIndexController", ["$scope", "$resource", 
 
   //更新周り
   $scope.updateRecordClick = function(id, index) {
+    $location.hash(-3);
+    $anchorScroll();
+
     $scope.record = $scope.records[index];
     recordCopy($scope.record, edit_record);
     $scope.update_index = index;
