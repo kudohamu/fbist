@@ -1,9 +1,24 @@
 <div id="summary" ng-controller="summaryController">
   <%= render "shared/messages" %>
   <div>
+    <div id="summary__refine">
+      チーム：
+      <div id="summary__teamSelect" class="uiSelect">
+        <select name="team" ng-model="filter_team" ng-options="s.team as s.name for s in options_teams" ng-change="teamChange()" ng-disabled="loadingUser || loadingRecords"></select>
+      </div>
+      &emsp;マッチ：
+      <div id="summary__matchSelect" class="uiSelect">
+        <select name="match" ng-model="filter_match" ng-options="s.match as s.name for s in options_matches" ng-change="matchChange()" ng-disabled="loadingUser || loadingRecords"></select>
+      </div>
+      &emsp;期間：
+      <div id="summary__sectionSelect" class="uiSelect">
+        <select name="section" ng-model="filter_section" ng-options="s.section as s.name for s in options_sections" ng-change="sectionChange()" ng-disabled="loadingUser || loadingRecords"></select>
+      </div>
+    </div>
+
     <div id="summary__user">
-      <div class="loadingImageDiv" ng-hide="userLoading"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
-      <table class="tableStyle" ng-show="userLoading">
+      <div class="loadingImageDiv" ng-show="loadingUser"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+      <table class="tableStyle" ng-hide="loadingUser">
         <tr>
         <td background=<%= current_user.icon.url %>><p><%= current_user.name %></p></td>
           <td>{{total.record}}</td>
@@ -14,7 +29,7 @@
       </table>
     </div><!--summary__user-->
     <div id="eachRecord">
-      <div class="loadingImageDiv" ng-hide="recordsLoading"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+      <div class="loadingImageDiv" ng-show="loadingRecords"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
       <div class="loadingFailedDiv" ng-show="loadingFailed">
         機体別データの取得に失敗しました。
       </div>

@@ -15,7 +15,7 @@
       <tr ng-repeat="record in records" id="{{$index}}">
         <td><a href="http://www4.atwiki.jp/arcgundamexvsfuvo/pages/{{record.gundam.wiki}}" target= "_blank" %><img src={{record.gundam.image_path}} alt={{record.gundam.name}}></a></td>
         <td class="records__redColor" ng-class="{records__blueColor: !record.won}">{{record.won ? "勝ち": "負け" }}</td>
-        <td class="records__maroonColor" ng-class="{records__midnightblueColor: !record.free}">{{record.free ? "フリー": "固定" }}</td>
+        <td class="records__maroonColor" ng-class="{records__midnightblueColor: !record.free}">{{record.free ? "フリー": "シャッフル" }}</td>
         <td class="records__darkGreenColor" ng-class="{records__lightCyanColor: !record.ranked}">{{record.ranked ? "ランクマ": "プレマ" }}</td>
         <td>
           <img src="{{record.friend.image_path}}">

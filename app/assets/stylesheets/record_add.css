@@ -41,13 +41,23 @@
 #record__addDiv table tbody tr td {
   margin:0;
   padding:0;
-  width:68px;
+  width:90px;
   height:68px;
 }
 
 #record__addDiv table tr td:first-child {
   width:136px;
   height:68px;
+}
+
+#record__addDiv table tbody tr td:last-child {
+  width:68px;
+  height:68px;
+}
+
+#record__addDiv table tr td a {
+  font-size:14px;
+  width:90px;
 }
 
 #record__addSelect img {
