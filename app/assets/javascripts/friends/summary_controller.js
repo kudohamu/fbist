@@ -58,7 +58,7 @@ fvistFoundationApp.controller("friendsSummaryController", ["$scope", "$resource"
   var sections_array = [
     { name: "すべて",     section: "0:0"    },
     { name: "最新100件",  section: "1:100"  },
-    { name: "最新300件",  section: "1:2"  },
+    { name: "最新300件",  section: "1:300"  },
     { name: "最新500件",  section: "1:500"  },
     { name: "最新1000件", section: "1:1000" },
     { name: "最新1週間",  section: "2:1"    },

@@ -24,13 +24,14 @@ class Api::FriendsController < ApplicationController
 
       case @section[0]
       when 1
-        @record = @record.limit(@section[1])
+        @ids = Record.where(user: current_user).order(id: :desc).limit(@section[1]).pluck(:id)
+        @record = @record.where(id: @ids)
       when 2
-        @record = @record.where("created_at >= ?", Date.today.weeks_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.weeks_ago(@section[1])).order(id: :desc)
       when 3
-        @record = @record.where("created_at >= ?", Date.today.months_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.months_ago(@section[1])).order(id: :desc)
       when 4
-        @record = @record.where("created_at >= ?", Date.today.years_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.years_ago(@section[1])).order(id: :desc)
       else
       end
 
@@ -57,8 +58,11 @@ class Api::FriendsController < ApplicationController
     @friends.each do |friend|
       if !@totals.has_key?(friend.id)
         @totals[friend.id] = 0
+      end
+      if !@wons.has_key?(friend.id)
         @wons[friend.id] = 0
       end
+
       @losts[friend.id] = @totals[friend.id] - @wons[friend.id]
       if @totals[friend.id] == 0
         @rates[friend.id] = 0.0
