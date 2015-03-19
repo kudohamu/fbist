@@ -132,3 +132,14 @@
   border-width:1px;
   border-color:rgba(0,0,0,0);
 }
+
+#record__addShowButton {
+  position:relative;
+  top:0px;
+  left:800px;
+  width:80px;
+}
+
+#record__addButton a {
+  height:20px;
+}

@@ -1,72 +1,44 @@
 <div id="summary" ng-controller="summaryController">
   <%= render "shared/messages" %>
-  <div>
-    <div id="summary__refine">
-      チーム：
-      <div id="summary__teamSelect" class="uiSelect">
-        <select name="team" ng-model="filter_team" ng-options="s.team as s.name for s in options_teams" ng-change="teamChange()" ng-disabled="loadingUser || loadingRecords"></select>
-      </div>
-      &emsp;マッチ：
-      <div id="summary__matchSelect" class="uiSelect">
-        <select name="match" ng-model="filter_match" ng-options="s.match as s.name for s in options_matches" ng-change="matchChange()" ng-disabled="loadingUser || loadingRecords"></select>
-      </div>
-      &emsp;期間：
-      <div id="summary__sectionSelect" class="uiSelect">
-        <select name="section" ng-model="filter_section" ng-options="s.section as s.name for s in options_sections" ng-change="sectionChange()" ng-disabled="loadingUser || loadingRecords"></select>
-      </div>
-    </div>
 
-    <div id="summary__user">
-      <div class="loadingImageDiv" ng-show="loadingUser"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
-      <table class="tableStyle" ng-hide="loadingUser">
-        <tr>
-        <td background=<%= current_user.icon.url %>><p><%= current_user.name %></p></td>
-          <td>{{total.record}}</td>
-          <td>{{total.won}}</td>
-          <td>{{total.lost}}</td>
-          <td>{{total.rate | number:1}}</td>
-        </tr>
-      </table>
-    </div><!--summary__user-->
-    <div id="eachRecord">
-      <div class="loadingImageDiv" ng-show="loadingRecords"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
-      <div class="loadingFailedDiv" ng-show="loadingFailed">
-        機体別データの取得に失敗しました。
+  <%= render "shared/summary_refine" %>
+  <%= render "shared/total_table" %>
+
+  <div id="eachRecord">
+    <div class="loadingImageDiv" ng-show="loadingRecords"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+    <div class="loadingFailedDiv" ng-show="loadingFailed">
+      機体別データの取得に失敗しました。
+    </div>
+    <div ng-show="loadingSuccess">
+      <div id="record__addShowButton">
+        <a href="" class="link__button" ng-click="record__addDivShow = !record__addDivShow">{{ !record__addDivShow ? "戦績追加" : "閉じる" }}</a>
       </div>
-      <div ng-show="loadingSuccess">
-        <div id="record__addShowButton">
-          <a href="" class="link__button" ng-click="record__addDivShow = !record__addDivShow">{{ !record__addDivShow ? "戦績追加" : "閉じる" }}</a>
-        </div>
-        <%= render "shared/record_add" %>
-        <div id="summary__select" class="uiSelect">
-          <select name="cost" ng-model="filter_cost" ng-options="c.cost as c.name for c in options_costs"></select>
-        </div><!--summary__select-->
-        <table class="tableStyle" id="eachRecord__table" ng-cloak ng-hide="gundamListDivShow || friendListDivShow">
-          <thead>
-            <tr>
-              <th><p><a href="" ng-click="thClick('no')">機体</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('no', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('no', 'desc')" %></p></th>
-              <th><p><a href="" ng-click="thClick('total')">戦闘数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('total', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('total', 'desc')" %></p></th>
-              <th><p><a href="" ng-click="thClick('won')">勝ち数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('won', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('won', 'desc')" %></p></th>
-              <th><p><a href="" ng-click="thClick('lost')">負け数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('lost', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('lost', 'desc')" %></p></th>
-              <th><p><a href="" ng-click="thClick('rate')">勝率</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('rate', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('rate', 'desc')" %></p></th>
-            </tr>
-          </thead>
-          <tbody id="eachRecord__tbody">
-            <tr ng-repeat="record in records | orderBy:predicate:reverse | filter:{cost: filter_cost}">
-              <!--
-              <td background="images/gundam/ms0adee.png" data-sortAs="1"><a href="#"></a></td>
-              -->
-              <td><a href="http://www4.atwiki.jp/arcgundamexvsfuvo/pages/{{record.wiki}}" target= "_blank" %><img src={{record.image_path}} alt={{record.name}}></a></td>
-              <td>{{record.total}}</td>
-              <td>{{record.won}}</td>
-              <td>{{record.lost}}</td>
-              <td ngIf="record.total">{{record.rate | number:1}}</td>
-            </tr>
-          </tbody>
-        </table><!--eachRecord__table-->
-      </div>
-      <%= render "shared/select_gundam" %>
-      <%= render "shared/select_friend" %>
-    </div><!--eachRecord-->
-  </div><!--summaryController-->
+      <%= render "shared/record_add" %>
+      <div id="summary__select" class="uiSelect">
+        <select name="cost" ng-model="filter_cost" ng-options="c.cost as c.name for c in options_costs"></select>
+      </div><!--summary__select-->
+      <table class="tableStyle" id="eachRecord__table" ng-cloak ng-hide="gundamListDivShow || friendListDivShow">
+        <thead>
+          <tr>
+            <th><p><a href="" ng-click="thClick('no')">機体</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('no', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('no', 'desc')" %></p></th>
+            <th><p><a href="" ng-click="thClick('total')">戦闘数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('total', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('total', 'desc')" %></p></th>
+            <th><p><a href="" ng-click="thClick('won')">勝ち数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('won', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('won', 'desc')" %></p></th>
+            <th><p><a href="" ng-click="thClick('lost')">負け数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('lost', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('lost', 'desc')" %></p></th>
+            <th><p><a href="" ng-click="thClick('rate')">勝率</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('rate', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('rate', 'desc')" %></p></th>
+          </tr>
+        </thead>
+        <tbody id="eachRecord__tbody">
+          <tr ng-repeat="record in records | orderBy:predicate:reverse | filter:{cost: filter_cost}">
+            <td><a href="http://www4.atwiki.jp/arcgundamexvsfuvo/pages/{{record.wiki}}" target= "_blank" %><img src={{record.image_path}} alt={{record.name}}></a></td>
+            <td>{{record.total}}</td>
+            <td>{{record.won}}</td>
+            <td>{{record.lost}}</td>
+            <td ngIf="record.total">{{record.rate | number:1}}</td>
+          </tr>
+        </tbody>
+      </table><!--eachRecord__table-->
+    </div>
+    <%= render "shared/select_gundam" %>
+    <%= render "shared/select_friend" %>
+  </div><!--eachRecord-->
 </div><!--summary-->
