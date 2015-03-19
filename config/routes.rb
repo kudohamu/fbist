@@ -60,6 +60,12 @@ Rails.application.routes.draw do
     resources :records, only: [:index] do
       collection do
         get 'summary'
+
+        resources :friends, only: [] do
+          collection do
+            get 'summary'
+          end
+        end
       end
     end
   end
@@ -70,6 +76,12 @@ Rails.application.routes.draw do
         collection do
           get 'summary'
           get 'total'
+
+          resources :friends, only: [] do
+            collection do
+              get 'summary'
+            end
+          end
         end
       end
 

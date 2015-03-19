@@ -1,0 +1,14 @@
+<div id="summary__refine">
+  期間：
+  <div id="summary__sectionSelect" class="uiSelect">
+    <select name="section" ng-model="filter_section" ng-options="s.section as s.name for s in options_sections" ng-change="sectionChange()" ng-disabled="loadingUser || loadingRecords"></select>
+  </div>
+  &emsp;チーム：
+  <div id="summary__teamSelect" class="uiSelect">
+    <select name="team" ng-model="filter_team" ng-options="s.team as s.name for s in options_teams" ng-change="teamChange()" ng-disabled="loadingUser || loadingRecords"></select>
+  </div>
+  &emsp;マッチ：
+  <div id="summary__matchSelect" class="uiSelect">
+    <select name="match" ng-model="filter_match" ng-options="s.match as s.name for s in options_matches" ng-change="matchChange()" ng-disabled="loadingUser || loadingRecords"></select>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+#userTotal table tr td:first-child {
+  padding:0px;
+  background-size:100% 100%;
+  border-radius:5px 0px 0px 5px;
+}
+
+#userTotal table tr td:first-child p {
+  position:relative;
+  top:60px;
+  left:0px;
+  text-align:center;
+  height:20px;
+  font-size:15px;
+  background-color:rgba(0,0,0,0.6);
+}
+
+#userTotal table tr td:nth-child(2)::after {
+  content:"戦"
+}
+
+#userTotal table tr td:nth-child(3)::after {
+  content:"勝"
+}
+
+#userTotal table tr td:nth-child(4)::after {
+  content:"敗"
+}
+
+#userTotal table tr td:last-child::after {
+  content:"%"
+}

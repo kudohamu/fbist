@@ -1,0 +1,82 @@
+#friendsSummary__table tr th {
+  margin:0;
+  padding:0;
+}
+
+#friendsSummary__table tr th p {
+  color:white;
+  background-color:rgba(81,81,141,1);
+  border-top:2px outset rgba(50,50,110,1);
+  border-left:2px outset rgba(50,50,110,1);
+  margin:0;
+}
+
+#friendsSummary__table tr th a {
+  color:rgba(255,255,255,1);
+}
+
+#friendsSummary__table tr th:first-child p {
+  border-radius:6px 0px 0px 0px;
+}
+
+#friendsSummary__table tr th:last-child p {
+  border-right:2px outset rgba(50,50,110,1);
+  border-radius:0px 6px 0px 0px;
+}
+
+#friendsSummary__table tr td {
+  height:66px;
+}
+
+#friendsSummary__table tr td:first-child {
+  padding:0px;
+  background-size:100% 100%;
+  border-radius:5px 0px 0px 5px;
+  width:136px;
+  height:136px;
+}
+
+
+#friendsSummary__table tbody tr td:first-child p {
+  background-color:rgba(0,0,0,0.6);
+  color:white;
+  position:relative;
+  top:-37px;
+  text-align:center;
+  font-size:12px;
+  margin-bottom:-37px;
+  margin-top:21px;
+}
+
+#friendsSummary__table tr td:nth-child(2)::after {
+  content:"戦"
+}
+
+#friendsSummary__table tr td:nth-child(3)::after {
+  content:"勝"
+}
+
+#friendsSummary__table tr td:nth-child(4)::after {
+  content:"敗"
+}
+
+#friendsSummary__table tr td:last-child::after {
+  content:"%"
+}
+
+#friendsSummary__table tr td:first-child a:hover {
+}
+
+#friendsSummary__table tr td img {
+  padding:0;
+  margin-bottom:-9px;
+  width:136px;
+  height:136px;
+}
+
+#friendsSummary__search {
+  position:relative;
+  left:150px;
+  width:300px;
+  color:white;
+}

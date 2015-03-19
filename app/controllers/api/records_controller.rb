@@ -40,23 +40,26 @@ class Api::RecordsController < ApplicationController
 
       case @section[0]
       when 1
-        @record = @record.limit(@section[1])
+        @ids = Record.where(user: current_user).order(id: :desc).limit(@section[1]).pluck(:id)
+        @record = @record.where(id: @ids)
       when 2
-        @record = @record.where("created_at >= ?", Date.today.weeks_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.weeks_ago(@section[1])).order(id: :desc)
       when 3
-        @record = @record.where("created_at >= ?", Date.today.months_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.months_ago(@section[1])).order(id: :desc)
       when 4
-        @record = @record.where("created_at >= ?", Date.today.years_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.years_ago(@section[1])).order(id: :desc)
       else
       end
       
       @totals = @record.group("records.gundam_id").count()
-      @wons = @record.group("records.gundam_id").sum("won = true")
+      @wons = @record.where(won: true).group("records.gundam_id").count()
     end
     @rates = Hash.new
     @gundams.each do |gundam|
       if !@totals.has_key?(gundam.id)
         @totals[gundam.id] = 0
+      end
+      if !@wons.has_key?(gundam.id)
         @wons[gundam.id] = 0
       end
       @losts[gundam.id] = @totals[gundam.id] - @wons[gundam.id]
@@ -97,18 +100,19 @@ class Api::RecordsController < ApplicationController
 
       case @section[0]
       when 1
-        @record = @record.limit(@section[1])
+        @ids = Record.where(user: current_user).order(id: :desc).limit(@section[1]).pluck(:id)
+        @record = @record.where(id: @ids)
       when 2
-        @record = @record.where("created_at >= ?", Date.today.weeks_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.weeks_ago(@section[1])).order(id: :desc)
       when 3
-        @record = @record.where("created_at >= ?", Date.today.months_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.months_ago(@section[1])).order(id: :desc)
       when 4
-        @record = @record.where("created_at >= ?", Date.today.years_ago(@section[1]))
+        @record = @record.where("created_at >= ?", Date.today.years_ago(@section[1])).order(id: :desc)
       else
       end
 
       @total_record = @record.count()
-      @total_won = @record.sum("won = true")
+      @total_won = @record.where(won: true).count()
     end
     @total_lost = @total_record - @total_won
     if @total_record == 0

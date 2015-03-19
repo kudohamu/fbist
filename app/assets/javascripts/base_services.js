@@ -24,6 +24,12 @@ fvistFoundationApp.factory("friendsFactory", ["$resource", function($resource) {
   return $resource("/api/account/friends");
 }]);
 
+
+fvistFoundationApp.factory("recordTotalFactory", ["$resource", function($resource) {
+  return $resource("/api/account/records/total");
+}]);
+
+
 //filter周りの共通処理
 fvistFoundationApp.filter("gundamListFilter", ["$rootScope", "$filter", function($rootScope, $filter) {
   return function(items, input) {
