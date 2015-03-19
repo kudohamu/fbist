@@ -1,0 +1,48 @@
+<div id="friendsSummaryDiv" ng-controller="friendsSummaryController">
+  <%= render "shared/messages" %>
+  <%= render "shared/summary_refine" %>
+
+  <%= render "shared/total_table" %>
+
+  <div id="friendsSummary">
+    <div class="loadingImageDiv" ng-show="loadingRecords"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+    <div class="loadingFailedDiv" ng-show="loadingFailed">
+      機体別データの取得に失敗しました。
+    </div>
+    <div ng-show="loadingSuccess">
+      <div id="record__addShowButton">
+        <a href="" class="link__button" ng-click="record__addDivShow = !record__addDivShow">{{ !record__addDivShow ? "戦績追加" : "閉じる" }}</a>
+      </div>
+      <%= render "shared/record_add" %>
+      <div id="friendsSummary__search">
+        絞り込み：<input ng-model="filter_friend">
+      </div>
+      <table class="tableStyle" id="friendsSummary__table" ng-cloak ng-hide="gundamListDivShow || friendListDivShow">
+        <thead>
+          <tr>
+            <th><p><a href="" ng-click="thClick('id')">フレンド</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('id', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('id', 'desc')" %></p></th>
+            <th><p><a href="" ng-click="thClick('total')">戦闘数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('total', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('total', 'desc')" %></p></th>
+            <th><p><a href="" ng-click="thClick('won')">勝ち数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('won', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('won', 'desc')" %></p></th>
+            <th><p><a href="" ng-click="thClick('lost')">負け数</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('lost', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('lost', 'desc')" %></p></th>
+            <th><p><a href="" ng-click="thClick('rate')">勝率</a> <%= image_tag "arrow_asc.png", alt: "∧", ng_show: "arrowShow('rate', 'asc')" %><%= image_tag "arrow_desc.png", alt: "∨", ng_show: "arrowShow('rate', 'desc')" %></p></th>
+          </tr>
+        </thead>
+        <tbody id="friendsSummary__tbody">
+          <tr ng-repeat="record in records | orderBy:predicate:reverse | filter:{name: filter_friend}">
+            <td>
+              <img src={{record.image_path}} alt={{record.name}}>
+              <p>{{record.name}}</p>
+            </td>
+            <td>{{record.total}}</td>
+            <td>{{record.won}}</td>
+            <td>{{record.lost}}</td>
+            <td ngIf="record.total">{{record.rate | number:1}}</td>
+          </tr>
+        </tbody>
+      </table><!--friendsSummary__table-->
+    </div>
+
+    <%= render "shared/select_gundam" %>
+    <%= render "shared/select_friend" %>
+  </div><!--friendsSummary-->
+</div><!--friendsSummaryDiv-->

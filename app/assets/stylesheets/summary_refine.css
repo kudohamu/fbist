@@ -1,0 +1,28 @@
+#summary__refine {
+  color:white;
+  position:relative;
+  left:145px;
+  margin-top:30px;
+  width:600px;
+}
+
+#summary__teamSelect:after {
+  position:relative;
+  left:72px;
+  top:-14px;
+  z-index:100;
+}
+
+#summary__matchSelect:after {
+  position:relative;
+  left:83px;
+  top:-14px;
+  z-index:100;
+}
+
+#summary__sectionSelect:after {
+  position:relative;
+  left:78px;
+  top:-14px;
+  z-index:100;
+}
