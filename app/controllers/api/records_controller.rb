@@ -51,7 +51,7 @@ class Api::RecordsController < ApplicationController
       end
       
       @totals = @record.group("records.gundam_id").count()
-      @wons = @record.group("records.gundam_id").sum("won = true")
+      @wons = @record.where(won: true).group("records.gundam_id").count()
     end
     @rates = Hash.new
     @gundams.each do |gundam|
@@ -108,7 +108,7 @@ class Api::RecordsController < ApplicationController
       end
 
       @total_record = @record.count()
-      @total_won = @record.sum("won = true")
+      @total_won = @record.where(won: true).count()
     end
     @total_lost = @total_record - @total_won
     if @total_record == 0
