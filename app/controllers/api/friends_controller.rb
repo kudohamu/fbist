@@ -3,8 +3,12 @@ class Api::FriendsController < ApplicationController
 
   def index
     @friends = current_user.friends
-    unless params[:other]
-      @friends.unshift(User.find_by_id(1))
+    if params[:other].present?
+      @friends.unshift(User.find_by(name: "その他"))
+    end
+
+    if params[:all].present?
+      @friends.unshift(User.find_by(name: "すべて"))
     end
     render :formats => [:json], :handlers => [:jbuilder]
   end
@@ -14,7 +18,7 @@ class Api::FriendsController < ApplicationController
     @wons = Hash.new
     @losts = Hash.new
     @friends = current_user.friends
-    @friends.unshift(User.find_by(id: 1))
+    @friends.unshift(User.find_by(name: "その他"))
     @section = [0, 0];
     @section = params[:section].split(":")
     @section[0] = @section[0].to_i
