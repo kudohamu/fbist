@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     resources :records, only: [:index] do
       collection do
         get 'summary'
+        get 'graph'
 
         resources :friends, only: [] do
           collection do
@@ -76,6 +77,7 @@ Rails.application.routes.draw do
         collection do
           get 'summary'
           get 'total'
+          get 'graph'
 
           resources :friends, only: [] do
             collection do

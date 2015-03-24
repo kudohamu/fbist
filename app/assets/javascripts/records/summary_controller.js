@@ -146,7 +146,10 @@ fvistFoundationApp.controller("summaryController", ["$scope", "$resource", "reco
   });
 
   //フレンドリスト取得
-  $scope.friend_list = friendsFactory.query(function() {
+  $scope.friend_list = friendsFactory.query({
+    other: true
+  }, 
+  function() {
     $scope.friendList__searchText = "";
     $scope.record.friend.id = $scope.friend_list[0].id;
     $scope.record.friend.image_path = $scope.friend_list[0].image_path;

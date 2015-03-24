@@ -1,4 +1,12 @@
 Gundam.create(
+  icon: File.open(File.join(Rails.root, "app/assets/images/gundams/gundam_all.png")),
+  name: "ALL",
+  no: 0001,
+  wiki: "1.html",
+  cost_id: 1
+)
+
+Gundam.create(
   icon: File.open(File.join(Rails.root, "app/assets/images/gundams/ms44037.png")),
   name: "ガンダム",
   no: 1000,
