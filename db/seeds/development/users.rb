@@ -1,5 +1,16 @@
 User.create(
   id: 1,
+  name: "すべて",
+  icon: File.open(File.join(Rails.root, "app/assets/images/user_all.png")),
+  uid: SecureRandom.uuid,
+  provider: "",
+  email: "all@gmail.com",
+  password: "allall",
+  password_confirmation: "allall"
+)
+
+User.create(
+  id: 2,
   name: "その他",
   icon: File.open(File.join(Rails.root, "app/assets/images/test.jpg")),
   uid: SecureRandom.uuid,
