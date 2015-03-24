@@ -9,4 +9,8 @@ class RecordsController < ApplicationController
   def summary
     @page_title = "機体別戦績"
   end
+
+  def graph
+    @page_title = "戦績グラフ"
+  end
 end

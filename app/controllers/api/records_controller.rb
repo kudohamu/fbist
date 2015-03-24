@@ -15,7 +15,7 @@ class Api::RecordsController < ApplicationController
     @totals = Hash.new
     @wons = Hash.new
     @losts = Hash.new
-    @gundams = Gundam.all.order("no")
+    @gundams = Gundam.where.not(name: "ALL").order("no")
     @section = params[:section].split(":")
     @section[0] = @section[0].to_i
     @section[1] = @section[1].to_i
@@ -40,7 +40,7 @@ class Api::RecordsController < ApplicationController
 
       case @section[0]
       when 1
-        @ids = Record.where(user: current_user).order(id: :desc).limit(@section[1]).pluck(:id)
+        @ids = @record.order(id: :desc).limit(@section[1]).pluck(:id)
         @record = @record.where(id: @ids)
       when 2
         @record = @record.where("created_at >= ?", Date.today.weeks_ago(@section[1])).order(id: :desc)
@@ -100,7 +100,7 @@ class Api::RecordsController < ApplicationController
 
       case @section[0]
       when 1
-        @ids = Record.where(user: current_user).order(id: :desc).limit(@section[1]).pluck(:id)
+        @ids = @record.order(id: :desc).limit(@section[1]).pluck(:id)
         @record = @record.where(id: @ids)
       when 2
         @record = @record.where("created_at >= ?", Date.today.weeks_ago(@section[1])).order(id: :desc)
@@ -124,8 +124,77 @@ class Api::RecordsController < ApplicationController
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
-  def show
+  def graph
+    @data = Array.new
+    @section = params[:section].split(":")
+    @section[0] = @section[0].to_i
+    @section[1] = @section[1].to_i
+    if Record.where(user: current_user).exists?
+      @record = Record.where(user: current_user)
 
+      case params[:team].to_i
+      when 1
+        @record = @record.where(free: false)
+      when 2
+        @record = @record.where(free: true)
+      else
+      end
+
+      case params[:match].to_i
+      when 1
+        @record = @record.where(ranked: false)
+      when 2
+        @record = @record.where(ranked: true)
+      else
+      end
+
+      case Gundam.find(params[:gundam_id].to_i).name
+      when "ALL"
+      else
+        @record = @record.where(gundam_id: params[:gundam_id].to_i)
+      end
+
+      case User.find(params[:friend_id].to_i).name
+      when "すべて"
+      else
+        @record = @record.where(friend_id: params[:friend_id].to_i)
+      end
+
+      10.times do |i|
+        case @section[0]
+        when 1
+          ids = @record.order(id: :desc).limit(@section[1]).offset(@section[1] * i).pluck(:id)
+          sec_record = @record.where(id: ids)
+          unit = ((i + 1) * @section[1]).to_s
+        when 2
+          sec_record = @record.where("? <= created_at AND created_at < ?", Date.today.days_ago(@section[1] * i), Date.today.days_ago(@section[1] * i).tomorrow)
+          unit = Date.today.days_ago(@section[1] * i).strftime("%m月%d日")
+        when 3
+          sec_record = @record.where("? <= created_at AND created_at < ?", Date.today.weeks_ago(@section[1] * (i+1)).tomorrow, Date.today.weeks_ago(@section[1] * i).tomorrow)
+          unit = Date.today.weeks_ago(@section[1] * i).strftime("%m月%d日")
+        when 4
+          sec_record = @record.where("? <= created_at AND created_at < ?", Date.today.months_ago(@section[1] * (i+1)).tomorrow, Date.today.months_ago(@section[1] * i).tomorrow)
+          unit = Date.today.months_ago(@section[1] * i).strftime("%m月%d日")
+        else
+        end
+        
+        total = sec_record.count()
+        won = sec_record.where(won: true).count()
+        won = 0 if won == 0
+        if total != 0
+          rate = BigDecimal(BigDecimal(won) * 100 / BigDecimal(total)).floor(2).to_f
+        else 
+          rate = 0
+        end
+
+        @data << { section: unit, rate: rate }
+      end
+
+      @data.reverse!
+      puts @data
+    end
+
+    render :formats => [:json], :handlers => [:jbuilder]
   end
 
   def create
