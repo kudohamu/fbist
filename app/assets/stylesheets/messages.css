@@ -1,27 +1,25 @@
-/*
 #top__alert {
+  position:fixed;
+  top:52px;
+  width:800px;
   margin:0 auto;
-  margin-bottom:10px;
-  padding:5px;
-  padding-top:1px;
-  padding-bottom:1px;
+  margin-left:-9px;
   background-color:rgba(230,150,150,1);
   border-style:solid;
-  border-radius:5px;
   border-width:1px;
   border-color:rgba(255,0,0,1);
-}
-
-#top__alert p {
   text-align:left;
   color:rgb(130,0,0);
   font-size:14px;
+  z-index:5000;
 }
 
-#message {
-  margin:0px auto;
+#top__alert p {
+  width:100%;
+  padding:10px 20px;
+  margin:0px;
 }
-*/
+
 
 .alert, .notice {
   margin:0 auto;
@@ -85,21 +83,16 @@
   opacity:0;
 }
 
-/*
-.messageShow.ng-add {
-  opacity:0;
+#error_explanation {
+  width:700px;
+  margin:0 auto;
+  padding:10px;
+  padding-left:30px;
+  background-color:rgba(230,150,150,1);
+  border-style:solid;
+  border-width:1px;
+  border-color:rgba(255,0,0,1);
+  text-align:left;
+  color:rgb(130,0,0);
+  font-size:14px;
 }
-
-.messageShow.ng-add-active {
-  opacity:1;
-}
-
-.messageShow.ng-remove {
-  opacity:1;
-}
-
-.messageShow.ng-remove-active {
-  height:0;
-  opacity:0;
-} 
-*/
