@@ -1,0 +1,55 @@
+<div id="friendsIndexDiv" ng-controller="friendsIndexController">
+  <%= render "shared/messages" %>
+
+  <h2 class="friendsIndex__subtitle">フォロイー</h2>
+  <div class="loadingImageDiv" ng-show="loadingRecords"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+  <div class="loadingFailedDiv" ng-show="loadingFailed">
+    フォロイーの取得に失敗しました。
+  </div>
+  <div id="friendsIndexContainer" ng-show="loadingSuccess">
+    <div id="friendsIndex__selectDiv">
+      <br/>検索&emsp;：<input ng-model="friendsIndex__searchText">
+    </div>
+    <ul>
+      <li ng-repeat="friend in friend_list | friendListFilter: {name: friendsIndex__searchText}">
+        <div ng-click="deleteFriendClick($index, friend.id)">
+          <img src={{friend.image_path}}>
+          <p>{{friend.name}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <h2 class="friendsIndex__subtitle">フォロワー</h2>
+  <div class="loadingImageDiv" ng-show="loadingRecords"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+  <div class="loadingFailedDiv" ng-show="loadingFailed">
+    フォロワーの取得に失敗しました。
+  </div>
+  <div id="followerIndexContainer" ng-show="loadingSuccess">
+    <div id="followerIndex__selectDiv">
+      <br/>検索&emsp;：<input ng-model="followerIndex__searchText">
+    </div>
+    <ul>
+      <li ng-repeat="follower in follower_list | followerListFilter: {name: followerIndex__searchText}">
+        <div>
+          <img src={{follower.image_path}}>
+          <p>{{follower.name}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="resetDiv"></div>
+
+  <div class="modalBackground" ng-click="deleteFriendDivHide()" ng-show="friendDeleteDialogShow">
+    <div id="deleteFriendDiv" class="dialog" ng-click="friendDeleteDialogClick = true">
+      <h2>フォローを解除しますか？</h2>
+      <div id="deleteFriendInfo">
+        <img src={{filtedFriends[deleteFriend_index].image_path}}>
+        <p>{{filtedFriends[deleteFriend_index].name}}</p>
+      </div>
+      <div id="deleteFriendButton" class="dialog_button">
+        <a class="link__button" href="" ng-click="deleteFriend(deleteFriend_id)">解除</a>
+      </div>
+    </div>
+  </div>
+</div><!--friendsIndexDiv-->

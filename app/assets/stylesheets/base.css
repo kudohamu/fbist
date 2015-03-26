@@ -252,3 +252,7 @@ body {
 .midnightblueColor:hover {
   background-color:rgba(15,15,102,1);
 }
+
+.resetDiv {
+  clear:both;
+}

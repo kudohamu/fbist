@@ -1,0 +1,36 @@
+<div id="usersIndexDiv" ng-controller="usersIndexController">
+  <%= render "shared/messages" %>
+
+  <div class="loadingImageDiv" ng-show="loadingRecords"><%= image_tag "loader.GIF", alt: "now_loading..." %></div>
+  <div class="loadingFailedDiv" ng-show="loadingFailed">
+    機体別データの取得に失敗しました。
+  </div>
+  <div id="usersIndexContainer" ng-show="loadingSuccess">
+    <div id="usersIndex__selectDiv">
+      <br/>検索&emsp;：<input ng-model="usersIndex__searchText" ng-click="selectFriendClick()">
+    </div>
+    <ul>
+      <li ng-repeat="user in user_list | userListFilter: {name: usersIndex__searchText}">
+        <div ng-click="addFriendClick($index, user.id)">
+          <img src={{user.image_path}}>
+          <p>{{user.name}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="resetDiv"></div>
+
+  <div class="modalBackground" ng-click="addFriendDivHide()" ng-show="friendAddDialogShow">
+    <div id="addFriendDiv" class="dialog" ng-click="friendAddDialogClick = true">
+      <h2>フォローしますか？</h2>
+      <div id="addFriendInfo">
+        <img src={{filtedUsers[addFriend_index].image_path}}>
+        <p>{{filtedUsers[addFriend_index].name}}</p>
+      </div>
+      <div id="addFriendButton" class="dialog_button">
+        <a class="link__button" href="" ng-click="addFriend(addFriend_id)">フォロー</a>
+      </div>
+    </div>
+  </div>
+</div><!--usersIndexDiv-->

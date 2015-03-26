@@ -21,12 +21,23 @@ fvistFoundationApp.factory("gundamsFactory", ["$resource", function($resource) {
 }]);
 
 fvistFoundationApp.factory("friendsFactory", ["$resource", function($resource) {
-  return $resource("/api/account/friends");
+  return $resource("/api/account/friends/:id", {id: "@id"}, {
+    create: {
+      method: "POST"
+    }
+  });
 }]);
 
+fvistFoundationApp.factory("followerFactory", ["$resource", function($resource) {
+  return $resource("/api/account/friends/follower");
+}]);
 
 fvistFoundationApp.factory("recordTotalFactory", ["$resource", function($resource) {
   return $resource("/api/account/records/total");
+}]);
+
+fvistFoundationApp.factory("usersFactory", ["$resource", function($resource) {
+  return $resource("/api/users");
 }]);
 
 
@@ -43,6 +54,14 @@ fvistFoundationApp.filter("friendListFilter", ["$rootScope", "$filter", function
   return function(items, input) {
     var result = $filter("filter")(items, input);
     $rootScope.filtedFriends = result;
+    return result;
+  };
+}]);
+
+fvistFoundationApp.filter("userListFilter", ["$rootScope", "$filter", function($rootScope, $filter) {
+  return function(items, input) {
+    var result = $filter("filter")(items, input);
+    $rootScope.filtedUsers = result;
     return result;
   };
 }]);
