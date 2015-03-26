@@ -49,3 +49,17 @@ User.create(
   password: "hogehoge",
   password_confirmation: "hogehoge"
 )
+
+users = %W(sunday monday tuesday wednesday thursday friday saturday)
+
+users.each do |user|
+  User.create(
+    name: user,
+    icon: File.open(File.join(Rails.root, "app/assets/images/test.jpg")),
+    uid: SecureRandom.uuid,
+    provider: "",
+    email: "#{user}@gmail.com",
+    password: user,
+    password_confirmation: user
+  )
+end
