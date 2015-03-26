@@ -32,7 +32,7 @@ class UserIconUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fit => [136, 136]
+  process :resize_to_fit => [500, 500]
   #
   #def scale(width, height)
   #  do something
