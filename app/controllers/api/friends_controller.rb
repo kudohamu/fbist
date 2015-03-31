@@ -2,14 +2,20 @@ class Api::FriendsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @friends = current_user.friends
+    @friends = current_user.friends_of_from_user.to_a
     if params[:other].present?
-      @friends.unshift(User.find_by(name: "その他"))
+      @friends.unshift(User.find(2))
     end
 
     if params[:all].present?
-      @friends.unshift(User.find_by(name: "すべて"))
+      @friends.unshift(User.find(1))
     end
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
+
+  def follower
+    @follower = current_user.friends_of_to_user.to_a
+
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
@@ -17,8 +23,11 @@ class Api::FriendsController < ApplicationController
     @totals = Hash.new
     @wons = Hash.new
     @losts = Hash.new
-    @friends = current_user.friends
-    @friends.unshift(User.find_by(name: "その他"))
+    @friends = current_user.friends_of_from_user.to_a
+    @friends.unshift(User.find(2))
+    @record_friend_ids = Record.where(user: current_user).pluck(:friend_id).uniq
+    @record_friend = User.find(@record_friend_ids).to_a
+    @friends = @friends | @record_friend
     @section = [0, 0];
     @section = params[:section].split(":")
     @section[0] = @section[0].to_i
@@ -74,6 +83,22 @@ class Api::FriendsController < ApplicationController
         @rates[friend.id] = BigDecimal(BigDecimal(@wons[friend.id]) * 100 / BigDecimal(@totals[friend.id])).floor(2).to_f
       end
     end
+
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
+
+  def create
+    @friend_list = FriendList.new(params.require(:friend_list).permit(:to_user_id))
+    @friend_list.from_user = current_user
+    @friend_list.save!
+
+    render :formats => [:json], :handlers => [:jbuilder]
+  end
+
+  def destroy
+    puts params[:id]
+    @friend = FriendList.where(from_user: current_user, to_user_id: params[:id]).first
+    @friend.destroy!
 
     render :formats => [:json], :handlers => [:jbuilder]
   end

@@ -30,3 +30,34 @@
                1px -1px  2px rgba(0,0,0,1);
   font-weight:bold;
 }
+
+#twitterLink {
+  background-color:rgba(85,172,238,1);
+  color:white;
+  text-decoration:none;
+  padding:15px 20px;
+  border-radius:8px;
+  font-size:14px;
+  position:relative;
+  left:60px;
+}
+
+#twitterLink:hover {
+  background-color:rgba(65,152,218,1);
+}
+
+#twitterLink img {
+  width:20px;
+  height:20px;
+  margin-bottom:-3px;
+}
+
+#new_registration {
+  width:180px;
+  position:relative;
+  left:55px;
+}
+
+.topfield input {
+  width:150px;
+}

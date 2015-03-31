@@ -69,6 +69,15 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    resources :friends, only: [:index]
+  end
+
+  resources :users, only: [:index]
+  resources :gundams, only: [] do
+    collection do
+      get 'rank'
+    end
   end
 
   namespace :api do
@@ -87,7 +96,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :friends, only: [:index]
+      resources :friends, only: [:index, :create, :destroy] do
+        collection do
+          get 'follower'
+        end
+      end
     end
 
     resources :users, only: [:index]

@@ -21,10 +21,6 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :uid, scope: [:provider]
 
-  def friends
-     self.friends_of_from_user + self.friends_of_to_user
-  end
-
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
