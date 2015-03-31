@@ -74,6 +74,11 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index]
+  resources :gundams, only: [] do
+    collection do
+      get 'rank'
+    end
+  end
 
   namespace :api do
     resource :account do
