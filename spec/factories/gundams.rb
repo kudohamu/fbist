@@ -8,4 +8,12 @@ FactoryGirl.define do
     sequence(:wiki) { |i| "hoge#{i}.html" }
     cost
   end
+
+  factory :all_gundam, class: Gundam do
+    icon File.open(File.join(Rails.root, "app/assets/images/test.jpg"))
+    name "ALL"
+    no 0001
+    wiki "all.html"
+    cost
+  end
 end
