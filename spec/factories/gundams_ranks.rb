@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :gundams_rank do
+    gundam
+    rank
   end
 end
