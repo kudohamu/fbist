@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe FriendList, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#from_user_id" do
+    it { should belong_to(:from_user) }
+    it { should validate_presence_of(:from_user_id) }
+  end
+
+  describe "#to_user_id" do
+    it { should belong_to(:to_user) }
+    it { should validate_presence_of(:to_user_id) }
+  end
 end
