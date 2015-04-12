@@ -8,4 +8,8 @@ RSpec.describe Record, :type => :model do
   describe "#gundam_id" do
     it { should belong_to(:gundam) }
   end
+
+  describe "#friend_id" do
+    it { should belong_to(:friend) }
+  end
 end
