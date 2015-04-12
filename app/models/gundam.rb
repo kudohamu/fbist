@@ -2,6 +2,8 @@ class Gundam < ActiveRecord::Base
   belongs_to :cost
 
   has_many :records
+  has_many :gundams_ranks
+  has_many :ranks, through: :gundams_ranks
 
   mount_uploader :icon, GundamIconUploader
 
