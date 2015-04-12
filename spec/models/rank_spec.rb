@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Rank, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many(:gundams_ranks) }
+
+  describe "#no" do
+    it { should validate_presence_of(:no) }
+  end
+
+  describe "#rank" do
+    it { should validate_presence_of(:rank) }
+  end
 end
