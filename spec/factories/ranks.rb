@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :rank do
+    sequence(:no) { |i| i }
+    sequence(:rank) { |i| "A#{i}" }
   end
 end

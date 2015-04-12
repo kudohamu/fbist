@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Gundam, :type => :model do
   it { should have_many(:records) }
+  it { should have_many(:gundams_ranks) }
 
   describe "#name" do
     it { should validate_presence_of(:name) }

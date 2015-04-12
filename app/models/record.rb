@@ -8,4 +8,6 @@ class Record < ActiveRecord::Base
 
   validates_presence_of :gundam_id
   validates_associated :gundam
+
+  validates_presence_of :friend_id
 end
