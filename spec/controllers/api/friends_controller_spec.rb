@@ -215,4 +215,61 @@ RSpec.describe Api::FriendsController, :type => :controller do
       end
     end
   end
+
+  describe "#create" do
+    describe "はログインしていないとき" do
+      before do
+        post :create
+      end
+
+      it "ステータスコードが302であること" do
+        expect(response.status).to eq(302)
+      end
+
+      it "ログインページ（トップ）にリダイレクトすること" do
+        should redirect_to "/"
+      end
+    end
+
+    describe "はログインしているとき" do
+      before do
+        @followee = create_list(:friend_list, 10, from_user: @user, to_user: create(:user))
+        @follower = create_list(:friend_list, 12, from_user: create(:user), to_user: @user)
+
+        @other_users = create_list(:user, 10)
+
+        @new_followee = create(:user)
+        login_user @user
+      end
+
+      describe "は既にフォロイーのとき" do
+        it "例外が発生すること" do
+          expect{
+            post :create, { friend_list: { to_user_id: @followee[0].id } }
+          }.to raise_error(ApplicationController::BadRequest)
+        end
+      end
+
+      describe "は存在しないto_user_idのとき" do
+        it "例外が発生すること" do
+          expect{
+            post :create, { friend_list: { to_user_id: -1 } }
+          }.to raise_error(ApplicationController::BadRequest)
+        end
+      end
+
+      describe "は正しいto_user_idのとき" do
+        it "ステータスコードが200であること" do
+          post :create, { friend_list: { to_user_id: @new_followee.id } }
+          expect(response.status).to eq(200)
+        end
+
+        it "FriendListのデータが入っていること" do
+          expect{
+            post :create, { friend_list: { to_user_id: @new_followee.id } }
+          }.to change(FriendList, :count).by(1)
+        end
+      end
+    end
+  end
 end
