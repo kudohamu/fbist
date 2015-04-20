@@ -106,8 +106,12 @@ class Api::FriendsController < ApplicationController
   end
 
   def destroy
-    @friend = FriendList.where(from_user: current_user, to_user_id: params[:id]).first
-    @friend.destroy!
+    if (User.where(id: params[:id]).exists? && FriendList.where(from_user: current_user, to_user_id: params[:id]).exists?)
+      @friend = FriendList.where(from_user: current_user, to_user_id: params[:id]).first
+      @friend.destroy!
+    else
+      raise BadRequest
+    end
 
     render :formats => [:json], :handlers => [:jbuilder]
   end
