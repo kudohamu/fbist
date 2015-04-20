@@ -15,7 +15,13 @@ class Api::FriendsController < ApplicationController
 
   def follower
     @follower = current_user.friends_of_to_user.to_a
+    if params[:other].present?
+      @follower.unshift(User.find(2))
+    end
 
+    if params[:all].present?
+      @follower.unshift(User.find(1))
+    end
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
