@@ -191,32 +191,33 @@ class Api::RecordsController < ApplicationController
       end
 
       @data.reverse!
-      puts @data
     end
 
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
   def create
-    @record = Record.new(params.require(:record).permit(:gundam_id, :won, :free, :ranked, :friend_id))
-    @record.user = current_user
-    
-    @success = false
-    if @record.save
-      @success = true
+    if (Gundam.where(id: params[:record][:gundam_id]).exists? && User.where(id: params[:record][:friend_id]).exists?)
+      @record = Record.new(params.require(:record).permit(:gundam_id, :won, :free, :ranked, :friend_id))
+      @record.user = current_user
+      @record.save!
+    else
+      raise BadRequest
     end
-    puts "sucess: " + @success.to_s
+    
     @records = Record.where(user: current_user).where(gundam_id: @record.gundam_id)
-    puts @records.inspect
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
   def update
-    puts params[:record]
     @record = Record.find_by_id(params[:id])
-    raise Exception unless @record.user_id == current_user.id
+    raise BadRequest unless @record.present? && @record.user_id == current_user.id
     
-    @record.update!(params.require(:record).permit(:gundam_id, :won, :free, :ranked, :friend_id))
+    if (Gundam.where(id: params[:record][:gundam_id]).exists? && User.where(id: params[:record][:friend_id]).exists?)
+      @record.update!(params.require(:record).permit(:gundam_id, :won, :free, :ranked, :friend_id))
+    else
+      raise BadRequest
+    end
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
@@ -231,7 +232,7 @@ class Api::RecordsController < ApplicationController
       end
     end
     
-    raise Exception unless @success
+    raise BadRequest unless @success
 
     render :formats => [:json], :handlers => [:jbuilder]
   end
