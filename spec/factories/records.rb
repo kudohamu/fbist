@@ -5,5 +5,6 @@ FactoryGirl.define do
     user
     gundam
     won true
+    friend
   end
 end
