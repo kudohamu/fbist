@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   class Forbidden < StandardError; end
+  class BadRequest < StandardError; end
   class TransactionError < StandardError; end
 
   if (ENV["RAILS_ENV"] == "staging" || ENV["RAILS_ENV"] == "production") && ENV["PUBLIC_FOLDER"] == "s3"

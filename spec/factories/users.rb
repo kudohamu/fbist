@@ -11,4 +11,15 @@ FactoryGirl.define do
     sequence(:provider) { |i| "#{i}#{i}" }
     uid SecureRandom.uuid
   end
+
+  factory :friend, class: User do
+    sequence(:name) { |i| "testfriend#{i}" }
+    sequence(:email) { |i| "s#{SecureRandom.uuid}@friend.com" }
+    icon File.open(File.join(Rails.root, "app/assets/images/test.jpg"))
+    password "hogehoge"
+    password_confirmation "hogehoge"
+    is_baned false
+    sequence(:provider) { |i| "#{i}#{i}" }
+    uid SecureRandom.uuid
+  end
 end

@@ -15,7 +15,13 @@ class Api::FriendsController < ApplicationController
 
   def follower
     @follower = current_user.friends_of_to_user.to_a
+    if params[:other].present?
+      @follower.unshift(User.find(2))
+    end
 
+    if params[:all].present?
+      @follower.unshift(User.find(1))
+    end
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
@@ -88,17 +94,24 @@ class Api::FriendsController < ApplicationController
   end
 
   def create
-    @friend_list = FriendList.new(params.require(:friend_list).permit(:to_user_id))
-    @friend_list.from_user = current_user
-    @friend_list.save!
+    if (User.where(id: params[:friend_list][:to_user_id]).exists? && !FriendList.where(from_user: current_user, to_user_id: params[:friend_list][:to_user_id]).exists?)
+      @friend_list = FriendList.new(params.require(:friend_list).permit(:to_user_id))
+      @friend_list.from_user = current_user
+      @friend_list.save!
+    else
+      raise BadRequest
+    end
 
     render :formats => [:json], :handlers => [:jbuilder]
   end
 
   def destroy
-    puts params[:id]
-    @friend = FriendList.where(from_user: current_user, to_user_id: params[:id]).first
-    @friend.destroy!
+    if (User.where(id: params[:id]).exists? && FriendList.where(from_user: current_user, to_user_id: params[:id]).exists?)
+      @friend = FriendList.where(from_user: current_user, to_user_id: params[:id]).first
+      @friend.destroy!
+    else
+      raise BadRequest
+    end
 
     render :formats => [:json], :handlers => [:jbuilder]
   end
